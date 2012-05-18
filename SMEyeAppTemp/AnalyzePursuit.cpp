@@ -369,6 +369,7 @@ bool CAnalyzePursuit::findPursuitParam(structPursuit* pPursuit)
 			m = corFindMaximum(m_pdTargetVel, pPursuit->startIdx, pPursuit->endIdx, &idx);	// 구간 내 최대값을 찾는다.
 			pPursuit->peakVelTarget= m;
 			pPursuit->peakVelTargetIdx = idx;
+
 		}
 		else
 		{
@@ -381,6 +382,8 @@ bool CAnalyzePursuit::findPursuitParam(structPursuit* pPursuit)
 			m = corFindMinimum(m_pdTargetVel, pPursuit->startIdx, pPursuit->endIdx, &idx);	// 구간 내 최대값을 찾는다.
 			pPursuit->peakVelTarget= m;
 			pPursuit->peakVelTargetIdx = idx;
+
+
 		}
 		bRtn = true;
 	}
