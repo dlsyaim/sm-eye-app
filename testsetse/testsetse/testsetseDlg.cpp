@@ -19,6 +19,8 @@ class CAboutDlg : public CDialogEx
 public:
 	CAboutDlg();
 
+
+
 // 대화 상자 데이터입니다.
 	enum { IDD = IDD_ABOUTBOX };
 
