@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Template|Win32">
+      <Configuration>Template</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0A08315B-7192-4B8A-B809-9AFBC12063A9}</ProjectGuid>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Debug\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Release\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Program Files\OpenCV10\cv\include;C:\Program Files\OpenCV10\cxcore\include;C:\Program Files\OpenCV10\otherlibs\highgui;C:\Program Files\Point Grey Research\FlyCapture2\include;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Program Files\OpenCV10\lib;C:\Program Files\Point Grey Research\FlyCapture2\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Program Files\OpenCV10\cv\include;C:\Program Files\OpenCV10\cxcore\include;C:\Program Files\OpenCV10\otherlibs\highgui;C:\Program Files\Point Grey Research\FlyCapture2\include;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Program Files\OpenCV10\lib;C:\Program Files\Point Grey Research\FlyCapture2\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">C:\Program Files\OpenCV10\cv\include;C:\Program Files\OpenCV10\cxcore\include;C:\Program Files\OpenCV10\otherlibs\highgui;C:\Program Files\Point Grey Research\FlyCapture2\include;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">C:\Program Files\OpenCV10\lib;C:\Program Files\Point Grey Research\FlyCapture2\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>vfw32.lib;cv.lib;cxcore.lib;highgui.lib;flycapture2.lib;smeye.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0412</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>vfw32.lib;cv.lib;cxcore.lib;highgui.lib;flyCapture2.lib;smeye.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0412</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="1298Que.cpp" />
+    <ClCompile Include="tchart\adxfunction.cpp" />
+    <ClCompile Include="AnalyzeBase.cpp" />
+    <ClCompile Include="AnalyzeCaloric.cpp" />
+    <ClCompile Include="AnalyzeHeadThrust.cpp" />
+    <ClCompile Include="AnalyzeNystagmus.cpp" />
+    <ClCompile Include="AnalyzeNystagmus2.cpp" />
+    <ClCompile Include="AnalyzePursuit.cpp" />
+    <ClCompile Include="AnalyzeSaccade.cpp" />
+    <ClCompile Include="tchart\annotationtool.cpp" />
+    <ClCompile Include="tchart\aspect.cpp" />
+    <ClCompile Include="AVIGenerator.cpp" />
+    <ClCompile Include="AviLoader.cpp" />
+    <ClCompile Include="AviLoaderManager.cpp" />
+    <ClCompile Include="tchart\axes.cpp" />
+    <ClCompile Include="tchart\axis.cpp" />
+    <ClCompile Include="tchart\axislabels.cpp" />
+    <ClCompile Include="tchart\axistitle.cpp" />
+    <ClCompile Include="tchart\bmpexport.cpp" />
+    <ClCompile Include="ReportGenerator\BorderLine.cpp" />
+    <ClCompile Include="tchart\brush.cpp" />
+    <ClCompile Include="Calibration.cpp" />
+    <ClCompile Include="tchart\chartaxispen.cpp" />
+    <ClCompile Include="tchart\chartfont.cpp" />
+    <ClCompile Include="tchart\colorbandtool.cpp" />
+    <ClCompile Include="tchart\colorlinetool.cpp" />
+    <ClCompile Include="ReportGenerator\Column.cpp" />
+    <ClCompile Include="CommDrive.cpp" />
+    <ClCompile Include="CommEOG.cpp" />
+    <ClCompile Include="CommLED.cpp" />
+    <ClCompile Include="corwlUtil.cpp" />
+    <ClCompile Include="tchart\cursortool.cpp" />
+    <ClCompile Include="DlgAnalCalibration.cpp" />
+    <ClCompile Include="DlgAnalNystag.cpp" />
+    <ClCompile Include="DlgAnalSaccade.cpp" />
+    <ClCompile Include="DlgAnalyzeBase.cpp" />
+    <ClCompile Include="DlgAnalyzeCaloric.cpp" />
+    <ClCompile Include="DlgAnalyzeHeadThrust.cpp" />
+    <ClCompile Include="DlgAnalyzePursuit.cpp" />
+    <ClCompile Include="DlgAppOption.cpp" />
+    <ClCompile Include="DlgCustomCalibrationSetting.cpp" />
+    <ClCompile Include="DlgEnterName.cpp" />
+    <ClCompile Include="DlgMakeTChartImage.cpp" />
+    <ClCompile Include="DlgOptionHeadThrust.cpp" />
+    <ClCompile Include="DlgPrintSetup.cpp" />
+    <ClCompile Include="DlgResultList.cpp" />
+    <ClCompile Include="DlgSelectSpontaneous.cpp" />
+    <ClCompile Include="DlgSubjectInfo.cpp" />
+    <ClCompile Include="DlgTestOption.cpp" />
+    <ClCompile Include="ReportGenerator\DrawBox.cpp" />
+    <ClCompile Include="ReportGenerator\DrawEllipse.cpp" />
+    <ClCompile Include="ReportGenerator\DrawField.cpp" />
+    <ClCompile Include="ReportGenerator\DrawGrid.cpp" />
+    <ClCompile Include="ReportGenerator\DrawLabel.cpp" />
+    <ClCompile Include="ReportGenerator\DrawLine.cpp" />
+    <ClCompile Include="ReportGenerator\DrawObject.cpp" />
+    <ClCompile Include="ReportGenerator\DrawPicture.cpp" />
+    <ClCompile Include="EA_AnalzeManager.cpp" />
+    <ClCompile Include="EA_Nystagmus.cpp" />
+    <ClCompile Include="ED_AppOption.cpp" />
+    <ClCompile Include="ED_EyeInfo.cpp" />
+    <ClCompile Include="ED_PatientInfo.cpp" />
+    <ClCompile Include="ED_rptMaker.cpp" />
+    <ClCompile Include="ED_TestDataAcc.cpp" />
+    <ClCompile Include="ED_TestDataBinocular.cpp" />
+    <ClCompile Include="ED_TestDataMonocular.cpp" />
+    <ClCompile Include="ED_TestInfo.cpp" />
+    <ClCompile Include="ED_TestProtocole.cpp" />
+    <ClCompile Include="ED_TreeSearch.cpp" />
+    <ClCompile Include="EnumerateSerial.cpp" />
+    <ClCompile Include="EU_QueEyeInfos.cpp" />
+    <ClCompile Include="EU_TestFile.cpp" />
+    <ClCompile Include="EU_TestFileV2.cpp" />
+    <ClCompile Include="tchart\export.cpp" />
+    <ClCompile Include="tchart\fastlineseries.cpp" />
+    <ClCompile Include="ReportGenerator\FieldFactory.cpp" />
+    <ClCompile Include="ListCtrlEx\HeaderCtrlEx.cpp" />
+    <ClCompile Include="ImageDisplay.cpp" />
+    <ClCompile Include="tchart\legend.cpp" />
+    <ClCompile Include="tchart\legenditem.cpp" />
+    <ClCompile Include="tchart\legenditems.cpp" />
+    <ClCompile Include="tchart\lineseries.cpp" />
+    <ClCompile Include="ListCtrlEx\ListCtrlEx.cpp" />
+    <ClCompile Include="tchart\marks.cpp" />
+    <ClCompile Include="tchart\nearesttool.cpp" />
+    <ClCompile Include="tchart\panel.cpp" />
+    <ClCompile Include="PbmQue.cpp" />
+    <ClCompile Include="tchart\pen.cpp" />
+    <ClCompile Include="tchart\pointer.cpp" />
+    <ClCompile Include="tchart\pointseries.cpp" />
+    <ClCompile Include="PTCamera.cpp" />
+    <ClCompile Include="tchart\rectangletool.cpp" />
+    <ClCompile Include="tchart\renkoseries.cpp" />
+    <ClCompile Include="ReportGenerator\ReportGenerator.cpp" />
+    <ClCompile Include="tchart\scroll.cpp" />
+    <ClCompile Include="tchart\series.cpp" />
+    <ClCompile Include="tchart\shapeseries.cpp" />
+    <ClCompile Include="SMEyeApp.cpp" />
+    <ClCompile Include="SMEyeAppDlg.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="StereoCam.cpp" />
+    <ClCompile Include="ReportGenerator\StringHelpers.cpp" />
+    <ClCompile Include="tchart\strings.cpp" />
+    <ClCompile Include="tchart\tchart.cpp" />
+    <ClCompile Include="tchart_horizontal.cpp" />
+    <ClCompile Include="tchart\teefont.cpp" />
+    <ClCompile Include="tchart\teepoint2d.cpp" />
+    <ClCompile Include="tchart\teeshadow.cpp" />
+    <ClCompile Include="tchart\teeshapepanel.cpp" />
+    <ClCompile Include="ReportGenerator\TextFile\TextFile.cpp" />
+    <ClCompile Include="tinyXML\tinystr.cpp" />
+    <ClCompile Include="tinyXML\tinyxml.cpp" />
+    <ClCompile Include="tinyXML\tinyxmlerror.cpp" />
+    <ClCompile Include="tinyXML\tinyxmlparser.cpp" />
+    <ClCompile Include="tchart\titles.cpp" />
+    <ClCompile Include="ReportGenerator\Tokenizer.cpp" />
+    <ClCompile Include="tchart\toollist.cpp" />
+    <ClCompile Include="tchart\tools.cpp" />
+    <ClCompile Include="TreeCtrlXML.cpp" />
+    <ClCompile Include="ReportGenerator\UnitConversion.cpp" />
+    <ClCompile Include="tchart\valuelist.cpp" />
+    <ClCompile Include="tchart\valuelists.cpp" />
+    <ClCompile Include="tchart\zoom.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="1298Que.h" />
+    <ClInclude Include="AnalyzeBase.h" />
+    <ClInclude Include="AnalyzeCaloric.h" />
+    <ClInclude Include="AnalyzeHeadThrust.h" />
+    <ClInclude Include="AnalyzeNystagmus.h" />
+    <ClInclude Include="AnalyzeNystagmus2.h" />
+    <ClInclude Include="AnalyzePursuit.h" />
+    <ClInclude Include="AnalyzeSaccade.h" />
+    <ClInclude Include="tchart\annotationtool.h" />
+    <ClInclude Include="tchart\aspect.h" />
+    <ClInclude Include="AVIGenerator.h" />
+    <ClInclude Include="AviLoader.h" />
+    <ClInclude Include="AviLoaderManager.h" />
+    <ClInclude Include="tchart\axes.h" />
+    <ClInclude Include="tchart\axis.h" />
+    <ClInclude Include="tchart\axislabels.h" />
+    <ClInclude Include="tchart\axistitle.h" />
+    <ClInclude Include="tchart\bmpexport.h" />
+    <ClInclude Include="ReportGenerator\BorderLine.h" />
+    <ClInclude Include="tchart\brush.h" />
+    <ClInclude Include="Calibration.h" />
+    <ClInclude Include="tchart\chartaxispen.h" />
+    <ClInclude Include="tchart\chartfont.h" />
+    <ClInclude Include="tchart\colorbandtool.h" />
+    <ClInclude Include="tchart\colorlinetool.h" />
+    <ClInclude Include="ReportGenerator\Column.h" />
+    <ClInclude Include="CommDrive.h" />
+    <ClInclude Include="CommEOG.h" />
+    <ClInclude Include="CommLED.h" />
+    <ClInclude Include="ReportGenerator\Container.h" />
+    <ClInclude Include="ReportGenerator\ContainerArray.h" />
+    <ClInclude Include="corwlDefines.h" />
+    <ClInclude Include="corwlUtil.h" />
+    <ClInclude Include="tchart\cursortool.h" />
+    <ClInclude Include="DlgAnalCalibration.h" />
+    <ClInclude Include="DlgAnalNystag.h" />
+    <ClInclude Include="DlgAnalSaccade.h" />
+    <ClInclude Include="DlgAnalyzeBase.h" />
+    <ClInclude Include="DlgAnalyzeCaloric.h" />
+    <ClInclude Include="DlgAnalyzeHeadThrust.h" />
+    <ClInclude Include="DlgAnalyzePursuit.h" />
+    <ClInclude Include="DlgAppOption.h" />
+    <ClInclude Include="DlgCustomCalibrationSetting.h" />
+    <ClInclude Include="DlgEnterName.h" />
+    <ClInclude Include="DlgMakeTChartImage.h" />
+    <ClInclude Include="DlgOptionHeadThrust.h" />
+    <ClInclude Include="DlgPrintSetup.h" />
+    <ClInclude Include="DlgResultList.h" />
+    <ClInclude Include="DlgSelectSpontaneous.h" />
+    <ClInclude Include="DlgSubjectInfo.h" />
+    <ClInclude Include="DlgTestOption.h" />
+    <ClInclude Include="ReportGenerator\DoublePoint.h" />
+    <ClInclude Include="ReportGenerator\DoubleRect.h" />
+    <ClInclude Include="ReportGenerator\DrawBox.h" />
+    <ClInclude Include="ReportGenerator\DrawEllipse.h" />
+    <ClInclude Include="ReportGenerator\DrawField.h" />
+    <ClInclude Include="ReportGenerator\DrawGrid.h" />
+    <ClInclude Include="ReportGenerator\DrawLabel.h" />
+    <ClInclude Include="ReportGenerator\DrawLine.h" />
+    <ClInclude Include="ReportGenerator\DrawObject.h" />
+    <ClInclude Include="ReportGenerator\DrawPicture.h" />
+    <ClInclude Include="EA_AnalzeManager.h" />
+    <ClInclude Include="EA_Nystagmus.h" />
+    <ClInclude Include="ED_AppOption.h" />
+    <ClInclude Include="ED_EyeInfo.h" />
+    <ClInclude Include="ED_PatientInfo.h" />
+    <ClInclude Include="ED_rptMaker.h" />
+    <ClInclude Include="ED_TestDataAcc.h" />
+    <ClInclude Include="ED_TestDataBinocular.h" />
+    <ClInclude Include="ED_TestDataMonocular.h" />
+    <ClInclude Include="ED_TestInfo.h" />
+    <ClInclude Include="ED_TestProtocole.h" />
+    <ClInclude Include="ED_TreeSearch.h" />
+    <ClInclude Include="EnumerateSerial.h" />
+    <ClInclude Include="EU_QueEyeInfos.h" />
+    <ClInclude Include="EU_TestFile.h" />
+    <ClInclude Include="EU_TestFileV2.h" />
+    <ClInclude Include="tchart\export.h" />
+    <ClInclude Include="tchart\fastlineseries.h" />
+    <ClInclude Include="ReportGenerator\FieldFactory.h" />
+    <ClInclude Include="ListCtrlEx\HeaderCtrlEx.h" />
+    <ClInclude Include="ImageDisplay.h" />
+    <ClInclude Include="includeTChart.h" />
+    <ClInclude Include="tchart\legend.h" />
+    <ClInclude Include="tchart\legenditem.h" />
+    <ClInclude Include="tchart\legenditems.h" />
+    <ClInclude Include="tchart\lineseries.h" />
+    <ClInclude Include="ListCtrlEx\ListCtrlEx.h" />
+    <ClInclude Include="tchart\marks.h" />
+    <ClInclude Include="tchart\nearesttool.h" />
+    <ClInclude Include="tchart\panel.h" />
+    <ClInclude Include="PbmQue.h" />
+    <ClInclude Include="tchart\pen.h" />
+    <ClInclude Include="tchart\pointer.h" />
+    <ClInclude Include="tchart\pointseries.h" />
+    <ClInclude Include="PTCamera.h" />
+    <ClInclude Include="tchart\rectangletool.h" />
+    <ClInclude Include="ReportGenerator\ReportGenerator.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="tchart\scroll.h" />
+    <ClInclude Include="tchart\series.h" />
+    <ClInclude Include="tchart\shapeseries.h" />
+    <ClInclude Include="SMEye.h" />
+    <ClInclude Include="SMEyeApp.h" />
+    <ClInclude Include="SMEyeAppDlg.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="StereoCam.h" />
+    <ClInclude Include="ReportGenerator\StringHelpers.h" />
+    <ClInclude Include="tchart\strings.h" />
+    <ClInclude Include="tchart\tchart.h" />
+    <ClInclude Include="tchart_horizontal.h" />
+    <ClInclude Include="ReportGenerator\TContainer.h" />
+    <ClInclude Include="tchart\TeeChartDefines.h" />
+    <ClInclude Include="tchart\teefont.h" />
+    <ClInclude Include="tchart\teepoint2d.h" />
+    <ClInclude Include="tchart\teeshadow.h" />
+    <ClInclude Include="tchart\teeshapepanel.h" />
+    <ClInclude Include="ReportGenerator\TextFile\TextFile.h" />
+    <ClInclude Include="tinyXML\tinystr.h" />
+    <ClInclude Include="tinyXML\tinyxml.h" />
+    <ClInclude Include="tchart\titles.h" />
+    <ClInclude Include="ReportGenerator\Tokenizer.h" />
+    <ClInclude Include="tchart\toollist.h" />
+    <ClInclude Include="tchart\tools.h" />
+    <ClInclude Include="TreeCtrlXML.h" />
+    <ClInclude Include="ReportGenerator\UnitConversion.h" />
+    <ClInclude Include="tchart\valuelist.h" />
+    <ClInclude Include="tchart\valuelists.h" />
+    <ClInclude Include="tchart\zoom.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\SMEyeApp.ico" />
+    <None Include="res\SMEyeApp.rc2" />
+    <None Include="DlgSubjectInfo.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SMEyeApp.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="res\SMEyeApp.manifest" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="SMEyeApp.rc" _x007B_BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196_x007D_="CTchart_horizontal" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

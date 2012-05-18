@@ -1,0 +1,1374 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 한국어 resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
+    "LANGUAGE 18, 1\r\n"
+    "#pragma code_page(949)\r\n"
+    "#include ""res\\SMEyeApp.rc2""  // Microsoft Visual C++에서 편집되지 않은 리소스\r\n"
+    "#include ""afxres.rc""         // 표준 구성 요소\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\SMEyeApp.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "SMEyeApp 정보"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "SMEyeApp Version 1.0",IDC_STATIC,40,10,119,8,
+                    SS_NOPREFIX
+    LTEXT           "Copyright (C) 2009",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "확인",IDOK,178,7,50,16,WS_GROUP
+END
+
+IDD_SMEYEAPP_DIALOG DIALOGEX 0, 0, 614, 435
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "SMEyeApp"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Close",IDOK,556,7,50,16,BS_FLAT
+    CONTROL         "",IDC_TCHART_HORIZONTAL,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,142,
+                    267,196,25
+    CONTROL         "",IDC_TCHART_TORSIONAL,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,142,
+                    333,196,25
+    CONTROL         "",IDC_TCHART_RADIUS,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,142,
+                    366,196,25
+    CONTROL         "",IDC_TCHART_ACC,"{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",
+                    WS_TABSTOP,134,403,196,25
+    CONTROL         "",IDC_TCHART_VERTICAL,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,142,
+                    299,196,25
+    CONTROL         "start",IDC_CHECK_CAM_START,"Button",BS_AUTOCHECKBOX | 
+                    BS_PUSHLIKE | WS_DISABLED | WS_TABSTOP,7,7,30,10
+    LTEXT           "Static",IDC_STATIC_EYE_IMAGE_DISPLAY,7,41,188,102
+    CONTROL         "",IDC_TREE_TEST,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | WS_BORDER | WS_TABSTOP,
+                    7,210,127,218
+    LTEXT           "ID: \n\nName: \n\nAge:\n\nSex: ",
+                    IDC_STATIC_SUBJECT_INFO,407,81,71,83
+    LTEXT           "Name: \n\nDate: \n\nTime: \n\nDuration:",
+                    IDC_STATIC_TEST_INFO,507,75,70,98
+    PUSHBUTTON      "Edit",IDC_BUTTON_EDIT_SUBJECT_INFO,417,161,50,14,
+                    BS_FLAT
+    PUSHBUTTON      "Edit",IDC_BUTTON_EDIT_TEST_INFO,514,177,50,14,BS_FLAT | 
+                    NOT WS_VISIBLE
+    GROUPBOX        "Subject Info",IDC_STATIC_GROUP_SI,390,60,104,146
+    GROUPBOX        "Test Info",IDC_STATIC_GROUP_TI,502,56,98,149
+    PUSHBUTTON      "temp",IDC_BUTTON1,155,7,30,14,NOT WS_VISIBLE
+    PUSHBUTTON      "make TI",IDC_BUTTON2,200,7,30,14,NOT WS_VISIBLE
+    PUSHBUTTON      "Open",IDC_BUTTON_OPEN,502,7,50,14,BS_FLAT
+    GROUPBOX        "Eye Info",IDC_STATIC_GROUP_EYE_INFO,282,60,104,72
+    GROUPBOX        "Cam Info",IDC_STATIC_GROUP_CAM_INFO,281,135,104,72
+    LTEXT           "Cam info",IDC_STATIC_CAM_INFO,293,151,28,8
+    LTEXT           "Eye info",IDC_STATIC_EYE_INFO,295,77,26,8
+    PUSHBUTTON      "Analyze",IDC_BUTTON_ANALYZE,339,7,50,14,BS_FLAT
+    CONTROL         "Left",IDC_CHECK_EYE_LEFT,"Button",BS_AUTOCHECKBOX | NOT 
+                    WS_VISIBLE | WS_TABSTOP,153,238,29,10
+    CONTROL         "Right",IDC_CHECK_EYE_RIGHT,"Button",BS_AUTOCHECKBOX | 
+                    NOT WS_VISIBLE | WS_TABSTOP,190,237,32,10
+    CONTROL         "acc X",IDC_CHECK_ACC_X,"Button",BS_AUTOCHECKBOX | NOT 
+                    WS_VISIBLE | WS_TABSTOP,235,238,33,10
+    CONTROL         "acc Y",IDC_CHECK_ACC_Y,"Button",BS_AUTOCHECKBOX | NOT 
+                    WS_VISIBLE | WS_TABSTOP,280,240,33,10
+    CONTROL         "acc Z",IDC_CHECK_ACC_Z,"Button",BS_AUTOCHECKBOX | NOT 
+                    WS_VISIBLE | WS_TABSTOP,325,241,33,10
+    CONTROL         "gyr X",IDC_CHECK_GYRO_X,"Button",BS_AUTOCHECKBOX | NOT 
+                    WS_VISIBLE | WS_TABSTOP,368,242,32,10
+    CONTROL         "gyr Y",IDC_CHECK_GYRO_Y,"Button",BS_AUTOCHECKBOX | NOT 
+                    WS_VISIBLE | WS_TABSTOP,413,244,33,10
+    CONTROL         "Horizontal",IDC_CHECK_CHART_H,"Button",BS_AUTOCHECKBOX | 
+                    NOT WS_VISIBLE | WS_TABSTOP,151,220,45,8
+    CONTROL         "vertical",IDC_CHECK_CHART_V,"Button",BS_AUTOCHECKBOX | 
+                    NOT WS_VISIBLE | WS_TABSTOP,201,222,45,8
+    CONTROL         "Torsional",IDC_CHECK_CHART_T,"Button",BS_AUTOCHECKBOX | 
+                    NOT WS_VISIBLE | WS_TABSTOP,249,224,45,8
+    CONTROL         "Radius",IDC_CHECK_CHART_R,"Button",BS_AUTOCHECKBOX | 
+                    NOT WS_VISIBLE | WS_TABSTOP,293,222,45,8
+    CONTROL         "Acc",IDC_CHECK_CHART_ACC,"Button",BS_AUTOCHECKBOX | NOT 
+                    WS_VISIBLE | WS_TABSTOP,341,224,45,8
+    CONTROL         "Horizontal",IDC_CHECK_CHART_H6,"Button",BS_AUTOCHECKBOX | 
+                    NOT WS_VISIBLE | WS_TABSTOP,387,222,45,8
+    CONTROL         "Horizontal",IDC_CHECK_CHART_H7,"Button",BS_AUTOCHECKBOX | 
+                    NOT WS_VISIBLE | WS_TABSTOP,426,223,45,8
+    CONTROL         "Horizontal",IDC_CHECK_CHART_H8,"Button",BS_AUTOCHECKBOX | 
+                    NOT WS_VISIBLE | WS_TABSTOP,472,222,45,8
+    LTEXT           "",IDC_STATIC_EYE_LEFT_COLOR,154,251,8,8
+    LTEXT           "Static",IDC_STATIC_SERIES_EYE_LEFT_COLOR,157,251,19,8,
+                    NOT WS_VISIBLE
+    LTEXT           "Static",IDC_STATIC_SERIES_EYE_RIGHT_COLOR,195,251,19,8,
+                    NOT WS_VISIBLE
+    LTEXT           "Static",IDC_STATIC_SERIES_ACC_X_COLOR3,244,251,19,8,NOT 
+                    WS_VISIBLE
+    LTEXT           "Static",IDC_STATIC_SERIES_ACC_Y_COLOR,286,251,19,8,NOT 
+                    WS_VISIBLE
+    LTEXT           "Static",IDC_STATIC_SERIES_ACC_Z_COLOR,333,252,19,8,NOT 
+                    WS_VISIBLE
+    LTEXT           "Static",IDC_STATIC_SERIES_GYRO_X_COLOR6,376,255,19,8,
+                    NOT WS_VISIBLE
+    LTEXT           "Static",IDC_STATIC_SERIES_GYRO_Y_COLOR7,424,256,19,8,
+                    NOT WS_VISIBLE
+    CONTROL         "",IDC_TCHART_ANALYZE_0,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,534,
+                    223,60,25
+    PUSHBUTTON      "Option",IDC_BUTTON_OPTION,411,7,50,14,BS_FLAT
+    PUSHBUTTON      "New",IDC_BUTTON_NEW_SUBJECT_INFO,417,177,50,14,BS_FLAT
+    PUSHBUTTON      "Print",IDC_BUTTON_PRINT,548,38,50,14,BS_FLAT
+    CONTROL         "Remove Offset",IDC_CHECK_REMOVE_OFFSET,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,100,176,65,10
+END
+
+IDD_DIALOG_SUBJECT_INFO DIALOGEX 0, 0, 200, 198
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Subject Information"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "확인",IDOK,143,177,50,14
+    PUSHBUTTON      "취소",IDCANCEL,64,177,50,14
+    LTEXT           "Name",IDC_STATIC,34,16,19,8
+    LTEXT           "ID",IDC_STATIC,34,37,8,8
+    LTEXT           "Age",IDC_STATIC,34,58,14,8
+    CONTROL         "Female",IDC_RADIO_FEMALE,"Button",BS_AUTORADIOBUTTON,34,
+                    79,42,8
+    CONTROL         "Male",IDC_RADIO_MALE,"Button",BS_AUTORADIOBUTTON,116,79,
+                    39,8
+    LTEXT           "Date",IDC_STATIC_PATIENT_DATE,34,100,159,8
+    LTEXT           "Memo",IDC_STATIC,34,121,20,8
+    EDITTEXT        IDC_EDIT_PATIENT_NAME,76,13,117,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_PATIENT_ID,76,34,117,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_PATIENT_AGE,76,55,117,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    EDITTEXT        IDC_EDIT_PATIENT_MEMO,76,125,117,43,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN
+END
+
+IDD_DIALOG_RESULT_LIST DIALOGEX 0, 0, 354, 284
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_BORDER | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "확인",IDOK,297,263,50,14
+    PUSHBUTTON      "취소",IDCANCEL,228,263,50,14
+    CONTROL         "",IDC_LIST_TEST_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,7,340,184
+    LTEXT           "Static",IDC_STATIC_LIST_MEMO,7,199,205,78,WS_BORDER
+END
+
+IDD_DIALOG_ANALYZE DIALOGEX 0, 0, 793, 465
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "확인",IDOK,668,444,50,14
+    PUSHBUTTON      "취소",IDCANCEL,736,444,50,14,NOT WS_VISIBLE
+    CONTROL         "",IDC_TCHART_ANAL0,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,7,64,
+                    178,80
+    CONTROL         "",IDC_TCHART_ANAL1,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,15,
+                    154,174,59
+    CONTROL         "",IDC_TCHART_ANAL2,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,7,
+                    233,186,64
+    CONTROL         "",IDC_TCHART_ANAL3,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,17,
+                    310,186,64
+    CONTROL         "",IDC_TCHART_ANAL4,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,228,
+                    81,186,64
+    CONTROL         "",IDC_TCHART_ANAL5,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,227,
+                    162,186,64
+    CONTROL         "",IDC_TCHART_ANAL6,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,245,
+                    246,186,64
+    CONTROL         "",IDC_TCHART_ANAL7,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,243,
+                    318,186,64
+    CONTROL         "",IDC_LIST_RESULT_SUMMARY,"SysListView32",LVS_REPORT | 
+                    LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,159,7,188,65
+END
+
+IDD_DIALOG_ANAL_NYSTAG DIALOGEX 0, 0, 342, 230
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "Left",IDC_RADIO_AN_LEFT,"Button",BS_AUTORADIOBUTTON,39,
+                    15,29,10
+    CONTROL         "Right",IDC_RADIO_AN_RIGHT,"Button",BS_AUTORADIOBUTTON,
+                    74,15,33,10
+    CONTROL         "All",IDC_RADIO_AN_ALL,"Button",BS_AUTORADIOBUTTON,7,14,
+                    23,10
+    CONTROL         "",IDC_LIST_AN_RESULT_SUMMARY,"SysListView32",LVS_REPORT | 
+                    LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,16,28,60,50
+    CONTROL         "",IDC_TCHART_AN_0,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,44,
+                    96,60,25
+    CONTROL         "",IDC_TCHART_AN_1,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,51,
+                    117,60,25
+    DEFPUSHBUTTON   "확인",IDOK,285,209,50,14
+    CONTROL         "",IDC_TCHART_AN_2,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,60,
+                    140,60,25
+    CONTROL         "",IDC_LIST_AN_RESULT_DETAIL,"SysListView32",LVS_REPORT | 
+                    LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,85,27,60,50
+    PUSHBUTTON      "reAnalyze",IDC_BUTTON_AN_REFRESH,27,204,50,14
+    DEFPUSHBUTTON   "Cancel",IDCANCEL,211,209,50,14
+END
+
+IDD_DIALOG_TEST_OPTION DIALOGEX 0, 0, 401, 250
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Test Info"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_TEST_NAME,107,14,143,14,ES_AUTOHSCROLL
+    CONTROL         "Calibration",IDC_RADIO_STI_CALIBRATION,"Button",
+                    BS_AUTORADIOBUTTON,108,37,50,10
+    CONTROL         "Gaze A",IDC_RADIO_STI_GAZE_A,"Button",
+                    BS_AUTORADIOBUTTON,171,37,39,10
+    CONTROL         "Gaze B",IDC_RADIO_STI_GAZE_B,"Button",
+                    BS_AUTORADIOBUTTON,223,37,38,10
+    CONTROL         "Pursuit",IDC_RADIO_STI_PURSUIT,"Button",
+                    BS_AUTORADIOBUTTON,274,37,38,10
+    CONTROL         "Saccade A",IDC_RADIO_STI_SACCADE_A,"Button",
+                    BS_AUTORADIOBUTTON,322,37,49,10
+    CONTROL         "Saccade B",IDC_RADIO_STI_SACCADE_B,"Button",
+                    BS_AUTORADIOBUTTON,108,52,49,10
+    CONTROL         "Saccade Random",IDC_RADIO_STI_SACCADE_RANDOM,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,170,52,71,10
+    CONTROL         "OKN",IDC_RADIO_STI_OKN,"Button",BS_AUTORADIOBUTTON,244,
+                    52,30,10
+    CONTROL         "LED",IDC_RADIO_STI_LED,"Button",BS_AUTORADIOBUTTON,282,
+                    52,28,10
+    CONTROL         "Caloric",IDC_RADIO_STI_CALORIC,"Button",
+                    BS_AUTORADIOBUTTON,325,52,37,10
+    COMBOBOX        IDC_COMBO_STIMULATION_LIST,107,68,143,79,CBS_DROPDOWN | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_ANAL_METHOD,107,88,143,82,CBS_DROPDOWN | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_ANAL_COMPONENT,107,107,143,77,CBS_DROPDOWN | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "H",IDC_CHECK_CHART_H,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,107,127,21,10
+    CONTROL         "V",IDC_CHECK_CHART_V,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,135,127,20,10
+    CONTROL         "T",IDC_CHECK_CHART_T,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,162,127,20,10
+    CONTROL         "R",IDC_CHECK_CHART_R,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,189,127,21,10
+    CONTROL         "ACC",IDC_CHECK_CHART_ACC,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,217,127,30,10
+    CONTROL         "show real time analysis",IDC_CHECK_REAL_TIME_ANAL,
+                    "Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,
+                    107,152,143,10
+    PUSHBUTTON      "취소",IDCANCEL,279,229,50,14
+    DEFPUSHBUTTON   "확인",IDOK,344,229,50,14
+    LTEXT           "Test Name",IDC_STATIC,20,17,35,8
+    LTEXT           "Analysis Method",IDC_STATIC,20,90,53,8
+    LTEXT           "Analysis Source",IDC_STATIC,20,109,51,8
+    LTEXT           "Chart Visibility",IDC_STATIC,20,128,66,8
+    LTEXT           "Stimulation",IDC_STATIC,20,38,66,8
+    GROUPBOX        "Protocole",IDC_STATIC_STIMULATION_PROTOCOLE,107,168,287,
+                    47
+    LTEXT           "Static",IDC_STATIC_STI_DESCRIPTION,117,180,247,28
+END
+
+IDD_DIALOG_ENTER_NEW_NAME DIALOGEX 0, 0, 186, 61
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_BORDER | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_NEW_NAME,20,18,142,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "확인",IDOK,66,40,50,14
+    PUSHBUTTON      "취소",IDCANCEL,129,40,50,14
+    LTEXT           "Enter new name",IDC_STATIC,20,6,53,8
+END
+
+IDD_DIALOG_ANALYZE_CALIBRATION DIALOGEX 0, 0, 470, 327
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Analyze Calibration"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "확인",IDOK,413,6,50,14
+    PUSHBUTTON      "취소",IDCANCEL,413,24,50,14
+    LTEXT           "Static",IDC_STATIC_AC_MODEL_COEFF_H,7,6,85,36,WS_BORDER
+    CONTROL         "",IDC_TCHART_AC_LEFT_CALIB,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,71,
+                    54,100,57
+    CONTROL         "",IDC_TCHART_AC_RIGHT_RAW,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,224,
+                    77,87,46
+    CONTROL         "",IDC_TCHART_AC_RIGHT_CALIB,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,356,
+                    63,98,62
+    CONTROL         "",IDC_TCHART_AC_H,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,7,
+                    127,456,67
+    CONTROL         "",IDC_TCHART_AC_V,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,7,
+                    193,456,127
+    LTEXT           "Static",IDC_STATIC_AC_MODEL_COEFF_V,92,6,85,36,
+                    WS_BORDER
+    PUSHBUTTON      "Save Calibration Coefficients",IDC_BUTTON_AC_SAVE,339,6,
+                    50,14
+    CONTROL         "Custom",IDC_CHECK_CUSTOM_CALIBRATION,"Button",
+                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,203,6,102,
+                    12
+    PUSHBUTTON      "Setting",IDC_BUTTON_CUSTOM_CALIBRATION_SETTING,213,18,
+                    50,14,NOT WS_VISIBLE | WS_DISABLED
+    PUSHBUTTON      "Analyze",IDC_BUTTON_CUSTOM_CALIBRATION_ANALYZE,231,38,
+                    50,14,NOT WS_VISIBLE
+    CONTROL         "",IDC_TCHART_AC_LEFT_RAW2,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,7,65,
+                    60,25
+END
+
+IDD_DIALOG_ANALYZE_SACCADE DIALOGEX 0, 0, 433, 347
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Analyze Saccade"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "확인",IDOK,376,326,50,14
+    PUSHBUTTON      "취소",IDCANCEL,221,326,50,14
+    CONTROL         "",IDC_LIST_AS_RESULT_SUMMARY,"SysListView32",LVS_REPORT | 
+                    LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,22,29,68,40
+    CONTROL         "",IDC_LIST_AS_RESULT_DETAIL,"SysListView32",LVS_REPORT | 
+                    LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,113,30,68,40
+    CONTROL         "",IDC_TCHART_AS_ZOOM,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",NOT WS_VISIBLE | 
+                    WS_TABSTOP,7,93,88,68
+    CONTROL         "",IDC_TCHART_AS_PEAK_VEL,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,108,
+                    95,88,68
+    CONTROL         "",IDC_TCHART_AS_ACCURACY,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,7,
+                    174,88,68
+    CONTROL         "",IDC_TCHART_AS_LATENCY,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,108,
+                    175,88,68
+    CONTROL         "",IDC_TCHART_AS_DATA,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,9,
+                    246,417,77
+    CONTROL         "All",IDC_RADIO_AS_ALL,"Button",BS_AUTORADIOBUTTON,20,7,
+                    23,10
+    CONTROL         "Left",IDC_RADIO_AS_LEFT,"Button",BS_AUTORADIOBUTTON,77,
+                    7,29,10
+    CONTROL         "Right",IDC_RADIO_AS_RIGHT,"Button",BS_AUTORADIOBUTTON,
+                    147,7,33,10
+    PUSHBUTTON      "reAnalyze",IDC_BUTTON_AS_REFRESH,7,326,50,14
+END
+
+IDD_DIALOG_APP_OPTION DIALOGEX 0, 0, 330, 355
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Option"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "확인",IDOK,273,334,50,14
+    PUSHBUTTON      "취소",IDCANCEL,209,334,50,14
+    GROUPBOX        "Com port",IDC_STATIC,17,15,294,36
+    LTEXT           "Target",IDC_STATIC,26,29,22,8
+    LTEXT           "Gyro",IDC_STATIC,176,29,16,8
+    COMBOBOX        IDC_COMBO_COMPORT_TARGET,55,27,106,99,CBS_DROPDOWN | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_COMPORT_ACCELERATION,197,27,107,99,
+                    CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Static",IDC_STATIC_DATA_FOLDER,26,64,231,24
+    PUSHBUTTON      "Change",IDC_BUTTON_CHANGE_DATA_FOLDER,262,66,42,14
+    GROUPBOX        "Data folder",IDC_STATIC,17,55,294,36
+    GROUPBOX        "Avi",IDC_STATIC,17,97,294,36
+    CONTROL         "Save Video",IDC_CHECK_SAVE_VIDEO,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,26,110,51,10
+    GROUPBOX        "Camera",IDC_STATIC,17,236,294,36
+    GROUPBOX        "Calibration",IDC_STATIC,17,135,294,95
+    PUSHBUTTON      "Load",IDC_BUTTON_OPTION_CALIBRATION_LOAD,254,210,50,14
+    LTEXT           "Static",IDC_STATIC_OPTION_CALIB_COEFF,45,145,187,71
+    CONTROL         "Select codec by user",IDC_CHECK_SELECT_CODEC_BY_USER,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,167,111,82,10
+    CONTROL         "Switch cameras",IDC_CHECK_SWITCH_CAMERAS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,26,252,65,10
+    CONTROL         "Use EOG",IDC_CHECK_USE_EOG,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,26,298,44,10
+    GROUPBOX        "EOG",IDC_STATIC,17,283,294,36
+    COMBOBOX        IDC_COMBO_COMPORT_EOG,145,297,159,68,CBS_DROPDOWN | 
+                    WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_DIALOG_ANALYZE_PURSUIT DIALOGEX 0, 0, 374, 297
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Pursuit analysis"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "확인",IDOK,316,276,50,14
+    PUSHBUTTON      "취소",IDCANCEL,246,276,50,14
+    CONTROL         "All",IDC_RADIO_AP_ALL,"Button",BS_AUTORADIOBUTTON,14,9,
+                    23,10
+    CONTROL         "Left",IDC_RADIO_AP_LEFT,"Button",BS_AUTORADIOBUTTON,80,
+                    12,29,10
+    CONTROL         "Right",IDC_RADIO_AP_RIGHT,"Button",BS_AUTORADIOBUTTON,
+                    152,12,33,10
+    CONTROL         "",IDC_LIST_AP_RESULT_SUMMARY,"SysListView32",LVS_REPORT | 
+                    LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,13,28,107,71
+    CONTROL         "",IDC_LIST_AP_RESULT_DETAIL,"SysListView32",LVS_REPORT | 
+                    LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,157,28,100,71
+    CONTROL         "",IDC_TCHART_AP_POSITION,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,16,
+                    102,331,56
+    CONTROL         "",IDC_TCHART_AP_VELOCITY,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,15,
+                    164,331,41
+    CONTROL         "",IDC_TCHART_AP_GAIN,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,19,
+                    218,331,41
+    PUSHBUTTON      "reAnalyze",IDC_BUTTON_AP_REFRESH,29,274,50,14
+END
+
+IDD_DIALOG_ANALYZE_CALORIC DIALOGEX 0, 0, 570, 314
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Caloric test"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "확인",IDOK,513,293,50,14
+    PUSHBUTTON      "취소",IDCANCEL,357,293,50,14
+    CONTROL         "",IDC_TCHART_CALORIC_BUTTERFLY,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,385,
+                    102,178,99
+    CONTROL         "",IDC_TCHART_CALORIC_SLOW_MOVE,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,39,
+                    167,187,96
+    LTEXT           "0 °/sec",IDC_STATIC_SPONTANEOUS_NYSTAG_VALUE,191,42,47,
+                    8,WS_DISABLED
+    CONTROL         "Set Spontaneous Nystagmus",IDC_CHECK_SPONTANEOUS_NYSTAG,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,41,108,10
+    PUSHBUTTON      "Set",IDC_BUTTON_SELECT_SPONTANEOUS_TEST,128,39,50,14,
+                    WS_DISABLED
+    CONTROL         "Left Eye",IDC_RADIO_CALORIC_LEFT_EYE,"Button",
+                    BS_AUTORADIOBUTTON,59,21,43,10
+    CONTROL         "Right Eye",IDC_RADIO_CALORIC_RIGHT_EYE,"Button",
+                    BS_AUTORADIOBUTTON,123,21,47,10
+    LTEXT           "Target:",IDC_STATIC,18,22,25,8
+    GROUPBOX        "Setting",IDC_STATIC,7,7,237,142
+    CONTROL         "Left Warm",IDC_CHECK_USE_FIX_BLOCK_LW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,47,78,49,10
+    CONTROL         "Right Cool",IDC_CHECK_USE_FIX_BLOCK_RC,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,124,78,49,10
+    CONTROL         "Left Cool",IDC_CHECK_USE_FIX_BLOCK_LC,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,47,95,45,10
+    CONTROL         "Right Warm",IDC_CHECK_USE_FIX_BLOCK_RW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,124,95,53,10
+    GROUPBOX        "Calculate Fixation Index",IDC_STATIC,16,65,219,43
+    CONTROL         "",IDC_LIST_TESTS_RESULT,"SysListView32",LVS_REPORT | 
+                    LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,260,7,211,50
+    CONTROL         "",IDC_LIST_TESTS_SUMMARY,"SysListView32",LVS_REPORT | 
+                    LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,260,58,211,50
+    PUSHBUTTON      "Reset",IDC_BUTTON_RESET_PEAK,173,124,50,14
+    CONTROL         "None",IDC_RADIO_MANUAL_PEAK_NONE,"Button",
+                    BS_AUTORADIOBUTTON,23,126,33,10
+    CONTROL         "X",IDC_RADIO_MANUAL_PEAK_X,"Button",BS_AUTORADIOBUTTON,
+                    84,126,20,10
+    CONTROL         "X-Y",IDC_RADIO_MANUAL_PEAK_XY,"Button",
+                    BS_AUTORADIOBUTTON,132,126,27,10
+    GROUPBOX        "Manual Peak Adjust",IDC_STATIC,16,115,219,28
+    PUSHBUTTON      "reAnalyze",IDC_BUTTON_CALORIC_REANALYZE,26,286,50,14,
+                    NOT WS_VISIBLE
+    PUSHBUTTON      "Print",IDC_BUTTON_CALORIC_PRINT,93,286,50,14
+END
+
+IDD_DIALOG_CUSTOM_CALIBRATION_SETTING DIALOGEX 0, 0, 181, 97
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Custom calibration setting"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "확인",IDOK,124,76,50,14
+    PUSHBUTTON      "취소",IDCANCEL,72,76,50,14
+    LTEXT           "Left-Right(°):   ±",IDC_STATIC_LR_DEGREE,37,23,56,8
+    LTEXT           "Top-Bottom(°): ±",IDC_STATIC_TB_DEGREE,37,43,57,8
+    EDITTEXT        IDC_EDIT_CUSTOM_LR,102,20,40,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    EDITTEXT        IDC_EDIT_CUSTOM_TB,102,40,40,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+END
+
+IDD_DIALOG_PRINT_SETUP DIALOGEX 0, 0, 415, 313
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Print setup"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Print",IDOK,358,292,50,14
+    PUSHBUTTON      "취소",IDCANCEL,298,292,50,14
+    CONTROL         "",IDC_TREE_PRINT,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_CHECKBOXES | 
+                    WS_BORDER | WS_TABSTOP,7,7,401,264
+    PUSHBUTTON      "Select All",IDC_BUTTON_SELECT_ALL,7,292,50,14
+    PUSHBUTTON      "Select None",IDC_BUTTON_SELECT_NONE,63,292,50,14
+END
+
+IDD_DIALOG_MAKE_TCHART_IMAGE DIALOGEX 0, 0, 261, 129
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "확인",IDOK,204,7,50,14
+    PUSHBUTTON      "취소",IDCANCEL,204,24,50,14
+    CONTROL         "",IDC_TCHART_IMAGE,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,94,
+                    44,89,39
+END
+
+IDD_DIALOG_SPON_COMPENSATION DIALOGEX 0, 0, 310, 242
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Spontaneous Compensation"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "확인",IDOK,253,221,50,14
+    PUSHBUTTON      "취소",IDCANCEL,196,221,50,14
+    CONTROL         "Manual ",IDC_RADIO_SPON_MANUAL_SELECT,"Button",
+                    BS_AUTORADIOBUTTON,17,25,41,10
+    CONTROL         "Select Test",IDC_RADIO_SPON_TEST_SELECT,"Button",
+                    BS_AUTORADIOBUTTON,17,49,51,10
+    EDITTEXT        IDC_EDIT_SPON_MANUAL_LEFT_VALUE,90,23,52,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "",IDC_TREE_SELECT_COMPENSATION,"SysTreeView32",
+                    TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT | 
+                    WS_BORDER | WS_TABSTOP,91,72,212,138
+    EDITTEXT        IDC_EDIT_SPON_TEST_LEFT_VALUE,90,47,52,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_EDIT_SPON_TEST_RIGHT_VALUE,179,47,52,14,
+                    ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Left (°/sec)",IDC_STATIC,97,7,38,8
+    LTEXT           "Right (°/sec)",IDC_STATIC,184,7,42,8
+    EDITTEXT        IDC_EDIT_SPON_MANUAL_RIGHT_VALUE,179,23,52,14,
+                    ES_AUTOHSCROLL
+END
+
+IDD_DIALOG_ANALYZE_HEAD_THRUST DIALOGEX 0, 0, 938, 547
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Analyze Head Thrust"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "확인",IDOK,881,526,50,14
+    PUSHBUTTON      "취소",IDCANCEL,465,526,50,14
+    CONTROL         "",IDC_TCHART_HT_LEFT_UP,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,6,6,
+                    170,159
+    CONTROL         "",IDC_TCHART_HT_RIGHT_UP,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,470,
+                    6,170,159
+    CONTROL         "",IDC_TCHART_HT_LEFT_DOWN,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,6,
+                    174,170,159
+    CONTROL         "",IDC_TCHART_HT_RIGHT_DOWN,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,470,
+                    174,170,159
+    CONTROL         "",IDC_TCHART_HEAD_THRUST_MAIN,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,6,
+                    343,777,169
+    CONTROL         "",IDC_TCHART_HT_LEFT_UP_VEL,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,177,
+                    6,170,159
+    CONTROL         "",IDC_TCHART_HT_RIGHT_UP_VEL,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,639,
+                    6,170,159
+    CONTROL         "",IDC_TCHART_HT_LEFT_DOWN_VEL,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,177,
+                    182,170,159
+    CONTROL         "",IDC_TCHART_HT_RIGHT_DOWN_VEL,
+                    "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,639,
+                    177,170,159
+    CONTROL         "",IDC_LIST_HT_UP,"SysListView32",LVS_REPORT | 
+                    LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,809,6,122,159
+    CONTROL         "",IDC_LIST_HT_DOWN,"SysListView32",LVS_REPORT | 
+                    LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,809,178,122,159
+    CONTROL         "",IDC_LIST_HT_SUMMARY,"SysListView32",LVS_REPORT | 
+                    LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,797,348,122,159
+    PUSHBUTTON      "reAnalyze",IDC_BUTTON_HT_REANALYZE,127,521,50,14
+    PUSHBUTTON      "Option",IDC_BUTTON_HEAD_THRUST_OPTION,209,522,50,14
+END
+
+IDD_DIALOG_HEAD_THRUST_OPTION DIALOGEX 0, 0, 186, 105
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Head Thrust Option"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "확인",IDOK,71,84,50,14
+    PUSHBUTTON      "취소",IDCANCEL,129,84,50,14
+    CONTROL         "Use Restriction",IDC_CHECK_LIMIT_MAX_HEAD_SPEED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,21,20,136,10
+    EDITTEXT        IDC_EDIT_LIMIT_MAX_HEAD_SPEED,121,34,40,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Max. Head Speed (/sec) :",IDC_STATIC_MAX_HEAD_SPEAD,23,
+                    37,83,8
+    GROUPBOX        "Maximum Head Speed",IDC_STATIC,7,7,172,67
+    EDITTEXT        IDC_EDIT_LIMIT_MIN_HEAD_SPEED,121,51,40,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Min. Head Speed (/sec) :",IDC_STATIC_MIN_HEAD_SPEAD,23,
+                    55,80,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041203b5"
+        BEGIN
+            VALUE "CompanyName", "TODO: <회사 이름>"
+            VALUE "FileDescription", "TODO: <파일 설명>"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "SMEyeApp.exe"
+            VALUE "LegalCopyright", "TODO: (c) <회사 이름>.  All rights reserved."
+            VALUE "OriginalFilename", "SMEyeApp.exe"
+            VALUE "ProductName", "TODO: <제품 이름>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "변환", 0x412, 949
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_SMEYEAPP_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 606
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 428
+    END
+
+    IDD_DIALOG_SUBJECT_INFO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 193
+        VERTGUIDE, 76
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 191
+    END
+
+    IDD_DIALOG_RESULT_LIST, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 347
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 277
+    END
+
+    IDD_DIALOG_ANALYZE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 786
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 458
+    END
+
+    IDD_DIALOG_ANAL_NYSTAG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 335
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 223
+    END
+
+    IDD_DIALOG_TEST_OPTION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 394
+        VERTGUIDE, 20
+        VERTGUIDE, 107
+        VERTGUIDE, 250
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 243
+        HORZGUIDE, 21
+        HORZGUIDE, 42
+        HORZGUIDE, 94
+        HORZGUIDE, 113
+        HORZGUIDE, 132
+    END
+
+    IDD_DIALOG_ENTER_NEW_NAME, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        VERTGUIDE, 91
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 54
+    END
+
+    IDD_DIALOG_ANALYZE_CALIBRATION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 463
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 320
+    END
+
+    IDD_DIALOG_ANALYZE_SACCADE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 426
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 340
+    END
+
+    IDD_DIALOG_APP_OPTION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 323
+        VERTGUIDE, 17
+        VERTGUIDE, 26
+        VERTGUIDE, 304
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 348
+        HORZGUIDE, 33
+        HORZGUIDE, 73
+        HORZGUIDE, 115
+        HORZGUIDE, 230
+        HORZGUIDE, 303
+    END
+
+    IDD_DIALOG_ANALYZE_PURSUIT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 366
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 290
+    END
+
+    IDD_DIALOG_ANALYZE_CALORIC, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 563
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 307
+        HORZGUIDE, 26
+        HORZGUIDE, 46
+        HORZGUIDE, 65
+        HORZGUIDE, 83
+        HORZGUIDE, 100
+    END
+
+    IDD_DIALOG_CUSTOM_CALIBRATION_SETTING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 174
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 90
+        HORZGUIDE, 27
+        HORZGUIDE, 47
+    END
+
+    IDD_DIALOG_PRINT_SETUP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 408
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 306
+    END
+
+    IDD_DIALOG_MAKE_TCHART_IMAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 254
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 122
+    END
+
+    IDD_DIALOG_SPON_COMPENSATION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 303
+        VERTGUIDE, 116
+        VERTGUIDE, 205
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 235
+        HORZGUIDE, 30
+        HORZGUIDE, 54
+    END
+
+    IDD_DIALOG_ANALYZE_HEAD_THRUST, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 931
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 540
+    END
+
+    IDD_DIALOG_HEAD_THRUST_OPTION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 98
+        HORZGUIDE, 41
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_SMEYEAPP_DIALOG DLGINIT
+BEGIN
+    IDC_TCHART_HORIZONTAL, 0x376, 98, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x5703, 0x0601, 0x6548, 0x6769, 0x7468, 0x2c02, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0000, 0x0000, 0x0000, 0x0200, 
+0x0000, 0x0000, 0xffff, 0xffff, 
+    IDC_TCHART_TORSIONAL, 0x376, 107, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x5703, 0x0601, 0x6548, 0x6769, 0x7468, 0x2c02, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0700, 0x6956, 0x6973, 0x6c62, 
+0x0865, 0x0000, 0x0000, 0x0000, 0x0002, 0x0000, 0xff00, 0xffff, "\377" 
+    IDC_TCHART_RADIUS, 0x376, 107, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x5703, 0x0601, 0x6548, 0x6769, 0x7468, 0x2c02, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0700, 0x6956, 0x6973, 0x6c62, 
+0x0865, 0x0000, 0x0000, 0x0000, 0x0002, 0x0000, 0xff00, 0xffff, "\377" 
+    IDC_TCHART_ACC, 0x376, 98, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x5703, 0x0601, 0x6548, 0x6769, 0x7468, 0x2c02, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0000, 0x0000, 0x0000, 0x0200, 
+0x0000, 0x0000, 0xffff, 0xffff, 
+    IDC_TCHART_VERTICAL, 0x376, 98, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x5703, 0x0601, 0x6548, 0x6769, 0x7468, 0x2c02, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0000, 0x0000, 0x0000, 0x0200, 
+0x0000, 0x0000, 0xffff, 0xffff, 
+    IDC_TCHART_ANALYZE_0, 0x376, 97, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x6902, 0x4806, 0x6965, 0x6867, 0x0274, 0x122c, 0x6954, 
+0x6c74, 0x2e65, 0x6554, 0x7478, 0x532e, 0x7274, 0x6e69, 0x7367, 0x0601, 
+0x5408, 0x6565, 0x6843, 0x7261, 0x0074, 0x0000, 0x0000, 0x0000, 0x0002, 
+0x0000, 0xff00, 0xffff, "\377" 
+    0
+END
+
+IDD_DIALOG_ANALYZE DLGINIT
+BEGIN
+    IDC_TCHART_ANAL0, 0x376, 99, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x0b03, 0x0601, 0x6548, 0x6769, 0x7468, 0x8203, 0x1200, 
+0x6954, 0x6c74, 0x2e65, 0x6554, 0x7478, 0x532e, 0x7274, 0x6e69, 0x7367, 
+0x0601, 0x5408, 0x6565, 0x6843, 0x7261, 0x0074, 0x0000, 0x0000, 0x0000, 
+0x0002, 0x0000, 0xff00, 0xffff, "\377" 
+    IDC_TCHART_ANAL1, 0x376, 98, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x0503, 0x0601, 0x6548, 0x6769, 0x7468, 0x6002, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0000, 0x0000, 0x0000, 0x0200, 
+0x0000, 0x0000, 0xffff, 0xffff, 
+    IDC_TCHART_ANAL2, 0x376, 98, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x1703, 0x0601, 0x6548, 0x6769, 0x7468, 0x6802, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0000, 0x0000, 0x0000, 0x0200, 
+0x0000, 0x0000, 0xffff, 0xffff, 
+    IDC_TCHART_ANAL3, 0x376, 98, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x1703, 0x0601, 0x6548, 0x6769, 0x7468, 0x6802, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0000, 0x0000, 0x0000, 0x0200, 
+0x0000, 0x0000, 0xffff, 0xffff, 
+    IDC_TCHART_ANAL4, 0x376, 98, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x1703, 0x0601, 0x6548, 0x6769, 0x7468, 0x6802, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0000, 0x0000, 0x0000, 0x0200, 
+0x0000, 0x0000, 0xffff, 0xffff, 
+    IDC_TCHART_ANAL5, 0x376, 98, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x1703, 0x0601, 0x6548, 0x6769, 0x7468, 0x6802, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0000, 0x0000, 0x0000, 0x0200, 
+0x0000, 0x0000, 0xffff, 0xffff, 
+    IDC_TCHART_ANAL6, 0x376, 98, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x1703, 0x0601, 0x6548, 0x6769, 0x7468, 0x6802, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0000, 0x0000, 0x0000, 0x0200, 
+0x0000, 0x0000, 0xffff, 0xffff, 
+    IDC_TCHART_ANAL7, 0x376, 98, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x1703, 0x0601, 0x6548, 0x6769, 0x7468, 0x6802, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0000, 0x0000, 0x0000, 0x0200, 
+0x0000, 0x0000, 0xffff, 0xffff, 
+    0
+END
+
+IDD_DIALOG_ANAL_NYSTAG DLGINIT
+BEGIN
+    IDC_TCHART_AN_0, 0x376, 97, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x5a02, 0x4806, 0x6965, 0x6867, 0x0274, 0x1229, 0x6954, 
+0x6c74, 0x2e65, 0x6554, 0x7478, 0x532e, 0x7274, 0x6e69, 0x7367, 0x0601, 
+0x5408, 0x6565, 0x6843, 0x7261, 0x0074, 0x0000, 0x0000, 0x0000, 0x0002, 
+0x0000, 0xff00, 0xffff, "\377" 
+    IDC_TCHART_AN_1, 0x376, 97, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x5a02, 0x4806, 0x6965, 0x6867, 0x0274, 0x1229, 0x6954, 
+0x6c74, 0x2e65, 0x6554, 0x7478, 0x532e, 0x7274, 0x6e69, 0x7367, 0x0601, 
+0x5408, 0x6565, 0x6843, 0x7261, 0x0074, 0x0000, 0x0000, 0x0000, 0x0002, 
+0x0000, 0xff00, 0xffff, "\377" 
+    IDC_TCHART_AN_2, 0x376, 97, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x5a02, 0x4806, 0x6965, 0x6867, 0x0274, 0x1229, 0x6954, 
+0x6c74, 0x2e65, 0x6554, 0x7478, 0x532e, 0x7274, 0x6e69, 0x7367, 0x0601, 
+0x5408, 0x6565, 0x6843, 0x7261, 0x0074, 0x0000, 0x0000, 0x0000, 0x0002, 
+0x0000, 0xff00, 0xffff, "\377" 
+    0
+END
+
+IDD_DIALOG_ANALYZE_CALIBRATION DLGINIT
+BEGIN
+    IDC_TCHART_AC_LEFT_CALIB, 0x376, 98, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x9603, 0x0600, 0x6548, 0x6769, 0x7468, 0x5d02, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0000, 0x0000, 0x0000, 0x0200, 
+0x0000, 0x0000, 0xffff, 0xffff, 
+    IDC_TCHART_AC_RIGHT_RAW, 0x376, 98, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x8303, 0x0600, 0x6548, 0x6769, 0x7468, 0x4b02, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0000, 0x0000, 0x0000, 0x0200, 
+0x0000, 0x0000, 0xffff, 0xffff, 
+    IDC_TCHART_AC_RIGHT_CALIB, 0x376, 98, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x9303, 0x0600, 0x6548, 0x6769, 0x7468, 0x6502, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0000, 0x0000, 0x0000, 0x0200, 
+0x0000, 0x0000, 0xffff, 0xffff, 
+    IDC_TCHART_AC_H, 0x376, 98, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0xac03, 0x0602, 0x6548, 0x6769, 0x7468, 0x6d02, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0000, 0x0000, 0x0000, 0x0200, 
+0x0000, 0x0000, 0xffff, 0xffff, 
+    IDC_TCHART_AC_V, 0x376, 99, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0xac03, 0x0602, 0x6548, 0x6769, 0x7468, 0xce03, 0x1200, 
+0x6954, 0x6c74, 0x2e65, 0x6554, 0x7478, 0x532e, 0x7274, 0x6e69, 0x7367, 
+0x0601, 0x5408, 0x6565, 0x6843, 0x7261, 0x0074, 0x0000, 0x0000, 0x0000, 
+0x0002, 0x0000, 0xff00, 0xffff, "\377" 
+    IDC_TCHART_AC_LEFT_RAW2, 0x376, 97, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x5a02, 0x4806, 0x6965, 0x6867, 0x0274, 0x1229, 0x6954, 
+0x6c74, 0x2e65, 0x6554, 0x7478, 0x532e, 0x7274, 0x6e69, 0x7367, 0x0601, 
+0x5408, 0x6565, 0x6843, 0x7261, 0x0074, 0x0000, 0x0000, 0x0000, 0x0002, 
+0x0000, 0xff00, 0xffff, "\377" 
+    0
+END
+
+IDD_DIALOG_ANALYZE_SACCADE DLGINIT
+BEGIN
+    IDC_TCHART_AS_ZOOM, 0x376, 107, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x8403, 0x0600, 0x6548, 0x6769, 0x7468, 0x6f02, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0700, 0x6956, 0x6973, 0x6c62, 
+0x0865, 0x0000, 0x0000, 0x0000, 0x0002, 0x0000, 0xff00, 0xffff, "\377" 
+    IDC_TCHART_AS_PEAK_VEL, 0x376, 98, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x8403, 0x0600, 0x6548, 0x6769, 0x7468, 0x6f02, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0000, 0x0000, 0x0000, 0x0200, 
+0x0000, 0x0000, 0xffff, 0xffff, 
+    IDC_TCHART_AS_ACCURACY, 0x376, 98, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x8403, 0x0600, 0x6548, 0x6769, 0x7468, 0x6f02, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0000, 0x0000, 0x0000, 0x0200, 
+0x0000, 0x0000, 0xffff, 0xffff, 
+    IDC_TCHART_AS_LATENCY, 0x376, 98, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x8403, 0x0600, 0x6548, 0x6769, 0x7468, 0x6f02, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0000, 0x0000, 0x0000, 0x0200, 
+0x0000, 0x0000, 0xffff, 0xffff, 
+    IDC_TCHART_AS_DATA, 0x376, 98, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x7203, 0x0602, 0x6548, 0x6769, 0x7468, 0x7d02, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0000, 0x0000, 0x0000, 0x0200, 
+0x0000, 0x0000, 0xffff, 0xffff, 
+    0
+END
+
+IDD_DIALOG_ANALYZE_PURSUIT DLGINIT
+BEGIN
+    IDC_TCHART_AP_POSITION, 0x376, 98, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0xf103, 0x0601, 0x6548, 0x6769, 0x7468, 0x5b02, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0000, 0x0000, 0x0000, 0x0200, 
+0x0000, 0x0000, 0xffff, 0xffff, 
+    IDC_TCHART_AP_VELOCITY, 0x376, 98, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0xf103, 0x0601, 0x6548, 0x6769, 0x7468, 0x4302, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0000, 0x0000, 0x0000, 0x0200, 
+0x0000, 0x0000, 0xffff, 0xffff, 
+    IDC_TCHART_AP_GAIN, 0x376, 98, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0xf103, 0x0601, 0x6548, 0x6769, 0x7468, 0x4302, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0000, 0x0000, 0x0000, 0x0200, 
+0x0000, 0x0000, 0xffff, 0xffff, 
+    0
+END
+
+IDD_DIALOG_MAKE_TCHART_IMAGE DLGINIT
+BEGIN
+    IDC_TCHART_IMAGE, 0x376, 98, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x8603, 0x0600, 0x6548, 0x6769, 0x7468, 0x3f02, 0x5412, 
+0x7469, 0x656c, 0x542e, 0x7865, 0x2e74, 0x7453, 0x6972, 0x676e, 0x0173, 
+0x0806, 0x6554, 0x4365, 0x6168, 0x7472, 0x0000, 0x0000, 0x0000, 0x0200, 
+0x0000, 0x0000, 0xffff, 0xffff, 
+    0
+END
+
+IDD_DIALOG_ANALYZE_CALORIC DLGINIT
+BEGIN
+    IDC_TCHART_CALORIC_BUTTERFLY, 0x376, 99, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x0b03, 0x0601, 0x6548, 0x6769, 0x7468, 0xa103, 0x1200, 
+0x6954, 0x6c74, 0x2e65, 0x6554, 0x7478, 0x532e, 0x7274, 0x6e69, 0x7367, 
+0x0601, 0x5408, 0x6565, 0x6843, 0x7261, 0x0074, 0x0000, 0x0000, 0x0000, 
+0x0002, 0x0000, 0xff00, 0xffff, "\377" 
+    IDC_TCHART_CALORIC_SLOW_MOVE, 0x376, 99, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x1903, 0x0601, 0x6548, 0x6769, 0x7468, 0x9c03, 0x1200, 
+0x6954, 0x6c74, 0x2e65, 0x6554, 0x7478, 0x532e, 0x7274, 0x6e69, 0x7367, 
+0x0601, 0x5408, 0x6565, 0x6843, 0x7261, 0x0074, 0x0000, 0x0000, 0x0000, 
+0x0002, 0x0000, 0xff00, 0xffff, "\377" 
+    0
+END
+
+IDD_DIALOG_ANALYZE_HEAD_THRUST DLGINIT
+BEGIN
+    IDC_TCHART_HT_LEFT_UP, 0x376, 99, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0xff03, 0x0600, 0x6548, 0x6769, 0x7468, 0x0203, 0x1201, 
+0x6954, 0x6c74, 0x2e65, 0x6554, 0x7478, 0x532e, 0x7274, 0x6e69, 0x7367, 
+0x0601, 0x5408, 0x6565, 0x6843, 0x7261, 0x0074, 0x0000, 0x0000, 0x0000, 
+0x0002, 0x0000, 0xff00, 0xffff, "\377" 
+    IDC_TCHART_HT_RIGHT_UP, 0x376, 99, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0xff03, 0x0600, 0x6548, 0x6769, 0x7468, 0x0203, 0x1201, 
+0x6954, 0x6c74, 0x2e65, 0x6554, 0x7478, 0x532e, 0x7274, 0x6e69, 0x7367, 
+0x0601, 0x5408, 0x6565, 0x6843, 0x7261, 0x0074, 0x0000, 0x0000, 0x0000, 
+0x0002, 0x0000, 0xff00, 0xffff, "\377" 
+    IDC_TCHART_HT_LEFT_DOWN, 0x376, 99, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0xff03, 0x0600, 0x6548, 0x6769, 0x7468, 0x0203, 0x1201, 
+0x6954, 0x6c74, 0x2e65, 0x6554, 0x7478, 0x532e, 0x7274, 0x6e69, 0x7367, 
+0x0601, 0x5408, 0x6565, 0x6843, 0x7261, 0x0074, 0x0000, 0x0000, 0x0000, 
+0x0002, 0x0000, 0xff00, 0xffff, "\377" 
+    IDC_TCHART_HT_RIGHT_DOWN, 0x376, 99, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0xff03, 0x0600, 0x6548, 0x6769, 0x7468, 0x0203, 0x1201, 
+0x6954, 0x6c74, 0x2e65, 0x6554, 0x7478, 0x532e, 0x7274, 0x6e69, 0x7367, 
+0x0601, 0x5408, 0x6565, 0x6843, 0x7261, 0x0074, 0x0000, 0x0000, 0x0000, 
+0x0002, 0x0000, 0xff00, 0xffff, "\377" 
+    IDC_TCHART_HEAD_THRUST_MAIN, 0x376, 99, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0x8e03, 0x0604, 0x6548, 0x6769, 0x7468, 0x1303, 0x1201, 
+0x6954, 0x6c74, 0x2e65, 0x6554, 0x7478, 0x532e, 0x7274, 0x6e69, 0x7367, 
+0x0601, 0x5408, 0x6565, 0x6843, 0x7261, 0x0074, 0x0000, 0x0000, 0x0000, 
+0x0002, 0x0000, 0xff00, 0xffff, "\377" 
+    IDC_TCHART_HT_LEFT_UP_VEL, 0x376, 99, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0xff03, 0x0600, 0x6548, 0x6769, 0x7468, 0x0203, 0x1201, 
+0x6954, 0x6c74, 0x2e65, 0x6554, 0x7478, 0x532e, 0x7274, 0x6e69, 0x7367, 
+0x0601, 0x5408, 0x6565, 0x6843, 0x7261, 0x0074, 0x0000, 0x0000, 0x0000, 
+0x0002, 0x0000, 0xff00, 0xffff, "\377" 
+    IDC_TCHART_HT_RIGHT_UP_VEL, 0x376, 99, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0xff03, 0x0600, 0x6548, 0x6769, 0x7468, 0x0203, 0x1201, 
+0x6954, 0x6c74, 0x2e65, 0x6554, 0x7478, 0x532e, 0x7274, 0x6e69, 0x7367, 
+0x0601, 0x5408, 0x6565, 0x6843, 0x7261, 0x0074, 0x0000, 0x0000, 0x0000, 
+0x0002, 0x0000, 0xff00, 0xffff, "\377" 
+    IDC_TCHART_HT_LEFT_DOWN_VEL, 0x376, 99, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0xff03, 0x0600, 0x6548, 0x6769, 0x7468, 0x0203, 0x1201, 
+0x6954, 0x6c74, 0x2e65, 0x6554, 0x7478, 0x532e, 0x7274, 0x6e69, 0x7367, 
+0x0601, 0x5408, 0x6565, 0x6843, 0x7261, 0x0074, 0x0000, 0x0000, 0x0000, 
+0x0002, 0x0000, 0xff00, 0xffff, "\377" 
+    IDC_TCHART_HT_RIGHT_DOWN_VEL, 0x376, 99, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0xff03, 0x0600, 0x6548, 0x6769, 0x7468, 0x0203, 0x1201, 
+0x6954, 0x6c74, 0x2e65, 0x6554, 0x7478, 0x532e, 0x7274, 0x6e69, 0x7367, 
+0x0601, 0x5408, 0x6565, 0x6843, 0x7261, 0x0074, 0x0000, 0x0000, 0x0000, 
+0x0002, 0x0000, 0xff00, 0xffff, "\377" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_CONTEXT_TEST_LIST_CHILD MENU 
+BEGIN
+    POPUP "Child"
+    BEGIN
+        MENUITEM "Edit Test",                   ID_EDIT_TEST_INFO
+        MENUITEM "Clear data",                  ID_CHILD_CLEARDATA
+        MENUITEM "Delete",                      ID_EDITTEST_DELETE
+    END
+END
+
+IDR_CONTEXT_TEST_LIST_BLANK MENU 
+BEGIN
+    POPUP "BLANK"
+    BEGIN
+        MENUITEM "Add New Group",               ID_BLANK_ADDNEWGROUP
+        MENUITEM SEPARATOR
+        MENUITEM "Load",                        ID_CONTEXT_BLANK_LOAD
+        MENUITEM "Save",                        ID_CONTEXT_BLANK_SAVE
+        MENUITEM "Set as Default",              ID_SETASDEFAULT_TEST_INFO
+        MENUITEM SEPARATOR
+        MENUITEM "Clear",                       ID_CONTEXT_BLANK_CLEAR
+    END
+END
+
+IDR_CONTEXT_TEST_LIST_GROUP MENU 
+BEGIN
+    POPUP "Group"
+    BEGIN
+        MENUITEM "Rename",                      ID_CONTEXT_GROUP_RENAME
+        MENUITEM "Add new test",                ID_CONTEXT_GROUP_ADD_TEST
+        MENUITEM "Delete",                      ID_CONTEXT_GROUP_DELETE
+    END
+END
+
+IDR_CONTEXT_IMAGE MENU 
+BEGIN
+    POPUP "Image"
+    BEGIN
+        MENUITEM "Reset Torsion",               ID_CONTEXT_IMAGE_RESET_TORSION
+
+    END
+END
+
+IDR_CONTEXT_CHART_POS MENU 
+BEGIN
+    POPUP "CHART POS"
+    BEGIN
+        MENUITEM "Remove Offset",               ID_CHARTPOS_REMOVEOFFSET
+    END
+END
+
+IDR_CONTEXT_CALORIC_FIX MENU 
+BEGIN
+    POPUP ""
+    BEGIN
+        MENUITEM "Set Fixation Block",          ID_CONTEXT_CALORIC_SET_FIX_BLOCK
+
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "SMEyeApp 정보(&A)..."
+END
+
+#endif    // 한국어 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+LANGUAGE 18, 1
+#pragma code_page(949)
+#include "res\SMEyeApp.rc2"  // Microsoft Visual C++에서 편집되지 않은 리소스
+#include "afxres.rc"         // 표준 구성 요소
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
