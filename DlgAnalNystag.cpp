@@ -1309,7 +1309,9 @@ void CDlgAnalNystag::OnBnClickedOk()
 void CDlgAnalNystag::OnClickTchart()
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
-	bool bShift = ::GetAsyncKeyState(VK_LSHIFT);
+	//bool bShift = ::GetAsyncKeyState(VK_LSHIFT);
+	bool bShift = IsSHIFTpressed();
+	
 	if(bShift)
 	{
 		//nystagmus를 추가한다.

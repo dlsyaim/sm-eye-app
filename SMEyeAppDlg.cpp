@@ -1245,8 +1245,11 @@ BOOL CSMEyeAppDlg::PreTranslateMessage(MSG* pMsg)
 	}
 	if(pMsg->message == WM_KEYDOWN) // 이벤트 종류는 많으므로 알아서...
 	{
-		bool bShift = ::GetAsyncKeyState(VK_LSHIFT);
-		bool bCtrl = ::GetAsyncKeyState(VK_LCONTROL);
+		//bool bShift = ::GetAsyncKeyState(VK_LSHIFT);
+		//bool bCtrl = ::GetAsyncKeyState(VK_LCONTROL);
+		bool bShift = IsSHIFTpressed();
+		bool bCtrl = IsCTRLpressed();
+		
 
 
 		if(bShift && bCtrl && (pMsg->wParam == 83)) //ctrl + shift + A

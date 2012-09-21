@@ -10,6 +10,8 @@
 #include <algorithm>
 
 
+
+
 void corGetProgramFolder(CString* pStr)
 {
 	char szModulePath[256] = "";
