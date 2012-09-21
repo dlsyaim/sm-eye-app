@@ -857,8 +857,9 @@ BOOL CDlgAnalSaccade::PreTranslateMessage(MSG* pMsg)
 		// ctrl + E : export to csv9
 		if(pMsg->wParam == 69)
 		{
-			bool bShift = ::GetAsyncKeyState(VK_LCONTROL);
-			if(bShift)
+			//bool bShift = ::GetAsyncKeyState(VK_LCONTROL);
+			bool bCtrl = IsCTRLpressed();
+			if(bCtrl)
 			{
 				exportToCSV();
 			}
@@ -1073,7 +1074,8 @@ void CDlgAnalSaccade::OnClickTchart()
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 
-	bool bShift = ::GetAsyncKeyState(VK_LSHIFT);
+	//bool bShift = ::GetAsyncKeyState(VK_LSHIFT);
+	bool bShift = IsSHIFTpressed();
 	if(bShift)
 	{
 		//pursuit 추가
