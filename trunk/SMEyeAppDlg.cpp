@@ -3198,7 +3198,7 @@ void CSMEyeAppDlg::OnUndoZoomTchart()
 			{
 				this->m_ChartCtrl[i].GetAxis().GetBottom().SetMinMax(m, M);
 				m_ChartCtrl[i].GetZoom().SetEnable(true);
-				m_ChartCtrl[i].GetScroll().SetEnable(true);
+				m_ChartCtrl[i].GetScroll().SetEnable(pmBoth);
 
 			}
 

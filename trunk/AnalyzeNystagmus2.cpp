@@ -521,7 +521,8 @@ unsigned long CAnalyzeNystagmus2::addNystagmus2(unsigned long idx, double* pEye,
 	//threshold 값을 결정
 	double thres = 0;
 	if(prevFPV || nextFPV)
-		thres = 0.3*min(prevFPV ? prevFPV : 100000, nextFPV ? nextFPV : 100000);
+		thres = 0.3*max(prevFPV ? prevFPV : 0, nextFPV ? nextFPV : 0);
+		//thres = 0.3*min(prevFPV ? prevFPV : 100000, nextFPV ? nextFPV : 100000);
 	else
 	{
 		::AfxMessageBox(" There are no nystagmus around here");
@@ -530,7 +531,8 @@ unsigned long CAnalyzeNystagmus2::addNystagmus2(unsigned long idx, double* pEye,
 
 	structNystag* pNysFound = NULL;
 
-	double thresHigh = min(prevFPV ? prevFPV : 100000, nextFPV ? nextFPV : 100000);
+	//double thresHigh = min(prevFPV ? prevFPV : 100000, nextFPV ? nextFPV : 100000);
+	double thresHigh = max(prevFPV ? prevFPV : 0, nextFPV ? nextFPV : 0);
 	//nystagmus를 찾을 때까지 threshol값을 올린다.
 	//너무 높아지면 중지
 	while (!pNysFound && (thres < thresHigh*0.95))

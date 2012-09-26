@@ -894,7 +894,7 @@ void CDlgAnalyzePursuit::OnUndoZoomTchartAp()
 				pTChart[i]->GetAxis().GetBottom().SetMinMax(m, M);
 				//다른 chart의 zoom을 끈다.
                 pTChart[i]->GetZoom().SetEnable(true);
-				pTChart[i]->GetScroll().SetEnable(true);
+				pTChart[i]->GetScroll().SetEnable(pmBoth);
 			}
 			
 		}
