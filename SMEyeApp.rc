@@ -292,7 +292,8 @@ BEGIN
     CONTROL         "All",IDC_RADIO_AN_ALL,"Button",BS_AUTORADIOBUTTON,7,14,
                     23,10
     CONTROL         "",IDC_LIST_AN_RESULT_SUMMARY,"SysListView32",LVS_REPORT | 
-                    LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,16,28,60,50
+                    LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_BORDER | 
+                    WS_TABSTOP,16,28,60,50
     CONTROL         "",IDC_TCHART_AN_0,
                     "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,44,
                     96,60,25
@@ -304,7 +305,8 @@ BEGIN
                     "{BDEB0088-66F9-4A55-ABD2-0BF8DEEC1196}",WS_TABSTOP,60,
                     140,60,25
     CONTROL         "",IDC_LIST_AN_RESULT_DETAIL,"SysListView32",LVS_REPORT | 
-                    LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,85,27,60,50
+                    LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_BORDER | 
+                    WS_TABSTOP,85,27,60,50
     PUSHBUTTON      "reAnalyze",IDC_BUTTON_AN_REFRESH,27,204,50,14
     DEFPUSHBUTTON   "Cancel",IDCANCEL,211,209,50,14
     PUSHBUTTON      "Print",IDC_BUTTON_NYSTAG_PRINT,89,209,50,14

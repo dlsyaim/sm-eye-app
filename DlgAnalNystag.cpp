@@ -912,10 +912,15 @@ void CDlgAnalNystag::selectNystagmusOnChart(int count)
 BOOL CDlgAnalNystag::PreTranslateMessage(MSG* pMsg)
 {
 	// TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
+	CString str;
 	if(pMsg->message == WM_KEYDOWN)
 	{
+		TRACE("WM_KEYDOWN message \n");
+
 		if(this->m_bEditing)
 		{
+			TRACE("key down under editing \n");
+
 			bool bShift = ::GetAsyncKeyState(VK_LSHIFT);
 
 			if(bShift)
@@ -1124,7 +1129,8 @@ void CDlgAnalNystag::OnUndoZoomTchartAn()
 				pTChart[i]->GetAxis().GetBottom().SetMinMax(m, M);
 				//다른 chart의 zoom을 끈다.
                 pTChart[i]->GetZoom().SetEnable(true);
-				pTChart[i]->GetScroll().SetEnable(true);
+				pTChart[i]->GetScroll().SetEnable(pmBoth);
+				
 			}
 			
 		}
@@ -1191,6 +1197,8 @@ void CDlgAnalNystag::enterEditMode(bool bEdit, unsigned long nysIdx)
 	{
 		//edit mode로 들어간다.
 		
+		TRACE("Edit mode \n");
+
 		m_bEditing = true;
 		this->m_ChartCtrl[CHART_EYE_MOV].GetTools().GetItems(0).GetAsColorband().SetColor(COLOR_EDIT);
 
@@ -1386,6 +1394,8 @@ void CDlgAnalNystag::OnDblClickTchart()
 		selectListDetail(idx);
 		selectNystagmusOnChart(idx);
 		this->enterEditMode(true, idx);
+
+		this->SetFocus();
 	}
 	
 }
