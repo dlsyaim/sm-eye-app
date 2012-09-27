@@ -915,13 +915,14 @@ BOOL CDlgAnalNystag::PreTranslateMessage(MSG* pMsg)
 	CString str;
 	if(pMsg->message == WM_KEYDOWN)
 	{
-		TRACE("WM_KEYDOWN message \n");
+		//TRACE("WM_KEYDOWN message \n");
 
 		if(this->m_bEditing)
 		{
-			TRACE("key down under editing \n");
+			//TRACE("key down under editing \n");
 
-			bool bShift = ::GetAsyncKeyState(VK_LSHIFT);
+			//bool bShift = ::GetAsyncKeyState(VK_LSHIFT);
+			bool bShift = IsSHIFTpressed();
 
 			if(bShift)
 			{
@@ -952,11 +953,13 @@ BOOL CDlgAnalNystag::PreTranslateMessage(MSG* pMsg)
 				//up down은 기울기
 				else if(pMsg->wParam == 38) // up
 				{
+					TRACE("up key pressed under editing\n");
 					moveSelectedNys(0.1, 0, 0);
 					return true;
 				}
 				else if(pMsg->wParam == 40)	//down
 				{
+					TRACE("down key pressed under editing \n");
 					moveSelectedNys(-0.1, 0, 0);
 					return true;
 				}
@@ -1392,10 +1395,11 @@ void CDlgAnalNystag::OnDblClickTchart()
 	if(idx != -1)
 	{
 		selectListDetail(idx);
-		selectNystagmusOnChart(idx);
+		
 		this->enterEditMode(true, idx);
 
-		this->SetFocus();
+		selectNystagmusOnChart(idx);
+
 	}
 	
 }
