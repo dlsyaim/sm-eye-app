@@ -3261,6 +3261,8 @@ void CSMEyeAppDlg::OnScrollTchart()
 		EU_EventFile::adjustEventLocation(&(m_ChartCtrl[1]), SERIES_EVENT);
 	}
 
+
+	
 }
 
 
