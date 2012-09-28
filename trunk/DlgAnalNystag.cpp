@@ -921,7 +921,8 @@ BOOL CDlgAnalNystag::PreTranslateMessage(MSG* pMsg)
 		{
 			TRACE("key down under editing \n");
 
-			bool bShift = ::GetAsyncKeyState(VK_LSHIFT);
+			//bool bShift = ::GetAsyncKeyState(VK_LSHIFT);
+			bool bShift = IsSHIFTpressed();
 
 			if(bShift)
 			{
