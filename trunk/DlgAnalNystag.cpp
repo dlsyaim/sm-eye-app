@@ -986,7 +986,8 @@ BOOL CDlgAnalNystag::PreTranslateMessage(MSG* pMsg)
 				else
 					this->enterEditMode(false, 1);;	//Àû¿ë
 			}
-			
+	
+			m_listResultDetail.SetFocus();
 
 			::TranslateMessage(pMsg);
 			::DispatchMessage(pMsg);

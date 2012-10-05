@@ -519,69 +519,69 @@ unsigned long CAnalyzeNystagmus2::addNystagmus2(unsigned long idx, double* pEye,
 	}
 
 	//threshold 값을 결정
+	structNystag* pNysFound = NULL;
 	double thres = 0;
 	if(prevFPV || nextFPV)
+	{
 		thres = 0.3*max(prevFPV ? prevFPV : 0, nextFPV ? nextFPV : 0);
 		//thres = 0.3*min(prevFPV ? prevFPV : 100000, nextFPV ? nextFPV : 100000);
-	else
-	{
-		::AfxMessageBox(" There are no nystagmus around here");
-		return -1;
-	}
+	
 
-	structNystag* pNysFound = NULL;
+	
 
-	//double thresHigh = min(prevFPV ? prevFPV : 100000, nextFPV ? nextFPV : 100000);
-	double thresHigh = max(prevFPV ? prevFPV : 0, nextFPV ? nextFPV : 0);
-	//nystagmus를 찾을 때까지 threshol값을 올린다.
-	//너무 높아지면 중지
-	while (!pNysFound && (thres < thresHigh*0.95))
-	{
-
-		//주어진 위치 좌우에서 threshod를 넘는 위치까지 찾는다.
-		unsigned long startIdx = 0, endIdx = 0;
-		//startIdx를 찾는다.
-		for(int i=idx; i> max(idx-100, M+5); i--)
+		//double thresHigh = min(prevFPV ? prevFPV : 100000, nextFPV ? nextFPV : 100000);
+		double thresHigh = max(prevFPV ? prevFPV : 0, nextFPV ? nextFPV : 0);
+		//nystagmus를 찾을 때까지 threshol값을 올린다.
+		//너무 높아지면 중지
+		while (!pNysFound && (thres < thresHigh*0.95))
 		{
-			if(abs(pEye[i] - pEye[i-M]) > thres)
+
+			//주어진 위치 좌우에서 threshod를 넘는 위치까지 찾는다.
+			unsigned long startIdx = 0, endIdx = 0;
+			//startIdx를 찾는다.
+			for(int i=idx; i> max(idx-100, M+5); i--)
 			{
-				startIdx = i;
-				break;
+				if(abs(pEye[i] - pEye[i-M]) > thres)
+				{
+					startIdx = i;
+					break;
+				}
 			}
-		}
 
 
-		for(int i=idx; i< min(idx+ 100, count-M-5); i++)
-		{
-			if(abs(pEye[i+M] - pEye[i]) > thres)
+			for(int i=idx; i< min(idx+ 100, count-M-5); i++)
 			{
-				endIdx = i;
-				break;
+				if(abs(pEye[i+M] - pEye[i]) > thres)
+				{
+					endIdx = i;
+					break;
+				}
 			}
-		}
 
-		//이전과 이후 위치와 비교하여 사이에 있는지 확인
-		if( ( pNysPrev ? startIdx > pNysPrev->endI : true) && 
-			(pNysNext ? endIdx < pNysNext->startI : true) && 
-			(endIdx-startIdx > 10) &&			//최소 길이
-			(endIdx-startIdx<120))				//최대 길이
-		{
-			int len = endIdx-startIdx;
-			startIdx += int(len*0.1 +0.5);
-			endIdx -= int(len*0.1 + 0.5);
+			//이전과 이후 위치와 비교하여 사이에 있는지 확인
+			if( ( pNysPrev ? startIdx > pNysPrev->endI : true) && 
+				(pNysNext ? endIdx < pNysNext->startI : true) && 
+				(endIdx-startIdx > 10) &&			//최소 길이
+				(endIdx-startIdx<120))				//최대 길이
+			{
+				int len = endIdx-startIdx;
+				startIdx += int(len*0.1 +0.5);
+				endIdx -= int(len*0.1 + 0.5);
 
-			//nystagmus를 만든다.
-			pNysFound = new structNystag;
-			pNysFound->startI = startIdx;
-			pNysFound->endI = endIdx;
-			pNysFound->vel = (pEye[endIdx] - pEye[startIdx]) / (double(endIdx-startIdx)/FRAMERATE);
+				//nystagmus를 만든다.
+				pNysFound = new structNystag;
+				pNysFound->startI = startIdx;
+				pNysFound->endI = endIdx;
+				pNysFound->vel = (pEye[endIdx] - pEye[startIdx]) / (double(endIdx-startIdx)/FRAMERATE);
 
+				
+
+			}
 			
-
+			thres = thres*1.1;
 		}
-		
-		thres = thres*1.1;
 	}
+
 
 	//못찾았다면 click된 위치 좌우 11개로 만든다.
 	if(!pNysFound)
