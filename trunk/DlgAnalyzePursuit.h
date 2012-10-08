@@ -104,4 +104,5 @@ public:
 	ED_PatientInfo m_patientInfo;
 	afx_msg void OnBnClickedButtonPursuitPrint();
 	afx_msg void OnBnClickedCheckRemoveOffset();
+	void OnBeforeDrawSeriesTchartApPosition();
 };
