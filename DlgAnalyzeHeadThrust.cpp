@@ -961,6 +961,7 @@ ON_EVENT(CDlgAnalyzeHeadThrust, IDC_TCHART_HT_RIGHT_DOWN_VEL, 3, OnClickTchartHt
 ON_EVENT(CDlgAnalyzeHeadThrust, IDC_TCHART_HEAD_THRUST_MAIN, 24, OnScrollTchartHeadThrustMain, VTS_NONE)
 ON_EVENT(CDlgAnalyzeHeadThrust, IDC_TCHART_HEAD_THRUST_MAIN, 27, OnZoomTchartHeadThrustMain, VTS_NONE)
 ON_EVENT(CDlgAnalyzeHeadThrust, IDC_TCHART_HEAD_THRUST_MAIN, 26, OnUndoZoomTchartHeadThrustMain, VTS_NONE)
+ON_EVENT(CDlgAnalyzeHeadThrust, IDC_TCHART_HEAD_THRUST_MAIN, 29, OnBeforeDrawSeriesTchartHeadThrustMain, VTS_NONE)
 END_EVENTSINK_MAP()
 
 
@@ -1618,20 +1619,32 @@ void CDlgAnalyzeHeadThrust::OnBnClickedButtonHtPrint()
 void CDlgAnalyzeHeadThrust::OnScrollTchartHeadThrustMain()
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+	/*
 	m_chartMain.Repaint();
 	EU_EventFile::adjustEventLocation(&m_chartMain, this->m_eventSeriesIdx);
+	*/
 }
 
 void CDlgAnalyzeHeadThrust::OnZoomTchartHeadThrustMain()
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+	/*
 	m_chartMain.Repaint();
 	EU_EventFile::adjustEventLocation(&m_chartMain, this->m_eventSeriesIdx);
+	*/
 }
 
 void CDlgAnalyzeHeadThrust::OnUndoZoomTchartHeadThrustMain()
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+	/*
 	m_chartMain.Repaint();
+	EU_EventFile::adjustEventLocation(&m_chartMain, this->m_eventSeriesIdx);
+	*/
+}
+
+void CDlgAnalyzeHeadThrust::OnBeforeDrawSeriesTchartHeadThrustMain()
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	EU_EventFile::adjustEventLocation(&m_chartMain, this->m_eventSeriesIdx);
 }

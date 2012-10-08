@@ -944,6 +944,7 @@ BEGIN_EVENTSINK_MAP(CDlgAnalSaccade, CDialog)
 	ON_EVENT(CDlgAnalSaccade, IDC_TCHART_AS_DATA, 24, OnScrollTchartAsData, VTS_NONE)
 	ON_EVENT(CDlgAnalSaccade, IDC_TCHART_AS_DATA, 27, OnZoomTchartAsData, VTS_NONE)
 	ON_EVENT(CDlgAnalSaccade, IDC_TCHART_AS_DATA, 26, OnUndoZoomTchartAsData, VTS_NONE)
+	ON_EVENT(CDlgAnalSaccade, IDC_TCHART_AS_DATA, 29, OnBeforeDrawSeriesTchartAsData, VTS_NONE)
 END_EVENTSINK_MAP()
 
 
@@ -1583,24 +1584,27 @@ void CDlgAnalSaccade::OnScrollTchartAsData()
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	//adjust event location
+	/*
 	m_chartRaw.Repaint();
-	EU_EventFile::adjustEventLocation(&m_chartRaw, this->m_eventSeriesIdx);
+	EU_EventFile::adjustEventLocation(&m_chartRaw, this->m_eventSeriesIdx);*/
 }
 
 void CDlgAnalSaccade::OnZoomTchartAsData()
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	//adjust event location
+	/*
 	m_chartRaw.Repaint();
-	EU_EventFile::adjustEventLocation(&m_chartRaw, this->m_eventSeriesIdx);
+	EU_EventFile::adjustEventLocation(&m_chartRaw, this->m_eventSeriesIdx);*/
 }
 
 void CDlgAnalSaccade::OnUndoZoomTchartAsData()
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	//adjust event location
+	/*
 	m_chartRaw.Repaint();
-	EU_EventFile::adjustEventLocation(&m_chartRaw, this->m_eventSeriesIdx);
+	EU_EventFile::adjustEventLocation(&m_chartRaw, this->m_eventSeriesIdx);*/
 }
 
 void CDlgAnalSaccade::OnBnClickedCheckRemoveOffset()
@@ -1651,4 +1655,10 @@ void CDlgAnalSaccade::OnBnClickedCheckRemoveOffset()
 		}
 	}
 
+}
+
+void CDlgAnalSaccade::OnBeforeDrawSeriesTchartAsData()
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+	EU_EventFile::adjustEventLocation(&m_chartRaw, this->m_eventSeriesIdx);
 }

@@ -2266,6 +2266,8 @@ ON_EVENT(CSMEyeAppDlg, IDC_TCHART_VERTICAL, 4, OnClickAxisTchart, VTS_I4 VTS_I4 
 ON_EVENT(CSMEyeAppDlg, IDC_TCHART_HORIZONTAL, 7, OnClickSeriesTchart, VTS_I4 VTS_I4 VTS_I4 VTS_I4 VTS_I4 VTS_I4)
 ON_EVENT(CSMEyeAppDlg, IDC_TCHART_VERTICAL, 7, OnClickSeriesTchart, VTS_I4 VTS_I4 VTS_I4 VTS_I4 VTS_I4 VTS_I4)
 ON_EVENT(CSMEyeAppDlg, IDC_TCHART_HORIZONTAL, 211, OnBeforePrintTchartHorizontal, VTS_NONE)
+ON_EVENT(CSMEyeAppDlg, IDC_TCHART_HORIZONTAL, 29, OnBeforeDrawSeriesTchartHorizontal, VTS_NONE)
+ON_EVENT(CSMEyeAppDlg, IDC_TCHART_VERTICAL, 29, OnBeforeDrawSeriesTchartVertical, VTS_NONE)
 END_EVENTSINK_MAP()
 
 void CSMEyeAppDlg::OnColorLineToolDragLineTchartHorizontal()
@@ -3158,6 +3160,7 @@ void CSMEyeAppDlg::OnZoomTchart()
 		}
 	}
 
+	/*
 	if(!m_bUnderTest)
 	{
 		m_ChartCtrl[0].Repaint();
@@ -3165,7 +3168,7 @@ void CSMEyeAppDlg::OnZoomTchart()
 
 		EU_EventFile::adjustEventLocation(&(m_ChartCtrl[0]), SERIES_EVENT);
 		EU_EventFile::adjustEventLocation(&(m_ChartCtrl[1]), SERIES_EVENT);
-	}
+	}*/
 	
 }
 
@@ -3206,6 +3209,7 @@ void CSMEyeAppDlg::OnUndoZoomTchart()
 		}
 	}
 
+	/*
 	if(!m_bUnderTest)
 	{
 		m_ChartCtrl[0].Repaint();
@@ -3213,7 +3217,7 @@ void CSMEyeAppDlg::OnUndoZoomTchart()
 
 		EU_EventFile::adjustEventLocation(&(m_ChartCtrl[0]), SERIES_EVENT);
 		EU_EventFile::adjustEventLocation(&(m_ChartCtrl[1]), SERIES_EVENT);
-	}
+	}*/
 
 }
 
@@ -3255,11 +3259,12 @@ void CSMEyeAppDlg::OnScrollTchart()
 		}
 	}
 
+	/*
 	if(!m_bUnderTest)
 	{
 		EU_EventFile::adjustEventLocation(&(m_ChartCtrl[0]), SERIES_EVENT);
 		EU_EventFile::adjustEventLocation(&(m_ChartCtrl[1]), SERIES_EVENT);
-	}
+	}*/
 
 
 	
@@ -3630,3 +3635,18 @@ void CSMEyeAppDlg::OnBeforePrintTchartHorizontal()
 	
 }
 
+
+void CSMEyeAppDlg::OnBeforeDrawSeriesTchartHorizontal()
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+	if(!m_bUnderTest)
+		EU_EventFile::adjustEventLocation(&(m_ChartCtrl[0]), SERIES_EVENT);
+
+}
+
+void CSMEyeAppDlg::OnBeforeDrawSeriesTchartVertical()
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+	if(!m_bUnderTest)
+		EU_EventFile::adjustEventLocation(&(m_ChartCtrl[1]), SERIES_EVENT);
+}

@@ -96,4 +96,5 @@ public:
 	void OnScrollTchartHeadThrustMain();
 	void OnZoomTchartHeadThrustMain();
 	void OnUndoZoomTchartHeadThrustMain();
+	void OnBeforeDrawSeriesTchartHeadThrustMain();
 };

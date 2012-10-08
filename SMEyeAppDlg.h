@@ -189,4 +189,6 @@ public:
 	
 
 	void OnBeforePrintTchartHorizontal();
+	void OnBeforeDrawSeriesTchartHorizontal();
+	void OnBeforeDrawSeriesTchartVertical();
 };
