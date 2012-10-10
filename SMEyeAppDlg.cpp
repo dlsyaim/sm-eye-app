@@ -3639,7 +3639,7 @@ void CSMEyeAppDlg::OnBeforePrintTchartHorizontal()
 void CSMEyeAppDlg::OnBeforeDrawSeriesTchartHorizontal()
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
-	if(!m_bUnderTest)
+	if(!m_bUnderTest && m_ChartCtrl[0].Series(SERIES_EVENT).GetCount())
 		EU_EventFile::adjustEventLocation(&(m_ChartCtrl[0]), SERIES_EVENT);
 
 }
@@ -3647,6 +3647,6 @@ void CSMEyeAppDlg::OnBeforeDrawSeriesTchartHorizontal()
 void CSMEyeAppDlg::OnBeforeDrawSeriesTchartVertical()
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
-	if(!m_bUnderTest)
+	if(!m_bUnderTest && m_ChartCtrl[1].Series(SERIES_EVENT).GetCount())
 		EU_EventFile::adjustEventLocation(&(m_ChartCtrl[1]), SERIES_EVENT);
 }
