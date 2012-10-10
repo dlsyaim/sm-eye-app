@@ -1311,6 +1311,7 @@ void CDlgAnalNystag::OnBnClickedButtonAnRefresh()
 
 	this->analyzeThis(LR);
 	this->showAnalyze();
+	this->fillChartSummary();
 	this->fillListSummary();
 	this->fillListDetail();
 }
