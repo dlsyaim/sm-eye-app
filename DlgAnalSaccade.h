@@ -122,5 +122,5 @@ public:
 	void OnZoomTchartAsData();
 	void OnUndoZoomTchartAsData();
 	afx_msg void OnBnClickedCheckRemoveOffset();
-	void OnBeforeDrawSeriesTchartAsData();
+	//void OnBeforeDrawSeriesTchartAsData();
 };

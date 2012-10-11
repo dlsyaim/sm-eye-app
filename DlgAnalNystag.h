@@ -121,6 +121,6 @@ public:
 	afx_msg void OnBnClickedButtonDeleteNegative();
 	afx_msg void OnBnClickedButtonDeletePositive();
 	afx_msg void OnBnClickedCheckRemoveOffset();
-	void OnBeforeDrawSeriesTchartAn0();
+	//void OnBeforeDrawSeriesTchartAn0();
 };
 
