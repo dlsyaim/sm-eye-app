@@ -813,7 +813,7 @@ BEGIN_EVENTSINK_MAP(CDlgAnalNystag, CDialog)
 	ON_EVENT(CDlgAnalNystag, IDC_TCHART_AN_0, 8, OnDblClickTchart, VTS_NONE)
 	ON_EVENT(CDlgAnalNystag, IDC_TCHART_AN_1, 3, OnClickTchart, VTS_NONE)
 	ON_EVENT(CDlgAnalNystag, IDC_TCHART_AN_1, 8, OnDblClickTchart, VTS_NONE)
-	ON_EVENT(CDlgAnalNystag, IDC_TCHART_AN_0, 29, OnBeforeDrawSeriesTchartAn0, VTS_NONE)
+	//ON_EVENT(CDlgAnalNystag, IDC_TCHART_AN_0, 29, OnBeforeDrawSeriesTchartAn0, VTS_NONE)
 END_EVENTSINK_MAP()
 
 void CDlgAnalNystag::OnAfterDrawTchartAn0()
@@ -1094,8 +1094,8 @@ void CDlgAnalNystag::OnZoomTchartAn()
 	}
 
 	//adjust event location
-	//m_ChartCtrl[CHART_EYE_MOV].Repaint();
-	//EU_EventFile::adjustEventLocation(&(m_ChartCtrl[CHART_EYE_MOV]), this->m_eventSeriesIdx);
+	m_ChartCtrl[CHART_EYE_MOV].Repaint();
+	EU_EventFile::adjustEventLocation(&(m_ChartCtrl[CHART_EYE_MOV]), this->m_eventSeriesIdx);
 }
 
 void CDlgAnalNystag::OnUndoZoomTchartAn()
@@ -1139,11 +1139,11 @@ void CDlgAnalNystag::OnUndoZoomTchartAn()
 		}
 	}
 
-	/*
+	
 	//adjust event location
 	m_ChartCtrl[CHART_EYE_MOV].Repaint();
 	EU_EventFile::adjustEventLocation(&(m_ChartCtrl[CHART_EYE_MOV]), this->m_eventSeriesIdx);
-	*/
+	
 }
 
 void CDlgAnalNystag::OnScrollTchartAn()
@@ -1187,11 +1187,11 @@ void CDlgAnalNystag::OnScrollTchartAn()
 	}
 
 
-	/*
+	
 	//adjust event location
 	m_ChartCtrl[CHART_EYE_MOV].Repaint();
 	EU_EventFile::adjustEventLocation(&(m_ChartCtrl[CHART_EYE_MOV]), this->m_eventSeriesIdx);
-	*/
+	
 
 	this->m_listResultDetail.SetFocus();
 }
@@ -1819,8 +1819,9 @@ void CDlgAnalNystag::OnBnClickedCheckRemoveOffset()
 
 }
 
+/*
 void CDlgAnalNystag::OnBeforeDrawSeriesTchartAn0()
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	EU_EventFile::adjustEventLocation(&(m_ChartCtrl[CHART_EYE_MOV]), this->m_eventSeriesIdx);
-}
+}*/

@@ -811,7 +811,7 @@ BEGIN_EVENTSINK_MAP(CDlgAnalyzePursuit, CDialog)
 	ON_EVENT(CDlgAnalyzePursuit, IDC_TCHART_AP_GAIN, 8, OnDblClickTchart, VTS_NONE)
 	ON_EVENT(CDlgAnalyzePursuit, IDC_TCHART_AP_VELOCITY, 3, OnClickTchart, VTS_NONE)
 	ON_EVENT(CDlgAnalyzePursuit, IDC_TCHART_AP_GAIN, 3, OnClickTchart, VTS_NONE)
-	ON_EVENT(CDlgAnalyzePursuit, IDC_TCHART_AP_POSITION, 29, OnBeforeDrawSeriesTchartApPosition, VTS_NONE)
+	//ON_EVENT(CDlgAnalyzePursuit, IDC_TCHART_AP_POSITION, 29, OnBeforeDrawSeriesTchartApPosition, VTS_NONE)
 END_EVENTSINK_MAP()
 
 void CDlgAnalyzePursuit::OnZoomTchartAp()
@@ -856,10 +856,10 @@ void CDlgAnalyzePursuit::OnZoomTchartAp()
 		}
 	}
 
-	/*
+	
 	m_chartPosition.Repaint();
 	EU_EventFile::adjustEventLocation(&m_chartPosition, this->m_eventSeriesIdx);
-	*/
+	
 }
 
 void CDlgAnalyzePursuit::OnUndoZoomTchartAp()
@@ -903,10 +903,10 @@ void CDlgAnalyzePursuit::OnUndoZoomTchartAp()
 		}
 	}
 
-	/*
+	
 	m_chartPosition.Repaint();
 	EU_EventFile::adjustEventLocation(&m_chartPosition, this->m_eventSeriesIdx);
-	*/
+	
 }
 
 void CDlgAnalyzePursuit::OnScrollTchartAp()
@@ -950,10 +950,10 @@ void CDlgAnalyzePursuit::OnScrollTchartAp()
 		}
 	}
 
-	/*
+	
 	m_chartPosition.Repaint();
 	EU_EventFile::adjustEventLocation(&m_chartPosition, this->m_eventSeriesIdx);
-	*/
+	
 }
 
 void CDlgAnalyzePursuit::OnAfterDrawTchartApPosition()
@@ -1441,8 +1441,9 @@ void CDlgAnalyzePursuit::OnBnClickedCheckRemoveOffset()
 	}
 }
 
+/*
 void CDlgAnalyzePursuit::OnBeforeDrawSeriesTchartApPosition()
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	EU_EventFile::adjustEventLocation(&m_chartPosition, this->m_eventSeriesIdx);
-}
+}*/
