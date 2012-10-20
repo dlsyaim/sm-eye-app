@@ -352,6 +352,7 @@ bool CAnalyzeCaloric::load(CString fname)
 			this->m_caloricData[i].readSaveFormat(buf, 1024);
 		}
 
+		file.Close();
 
 		bRtn = true;
 	}
@@ -393,7 +394,7 @@ bool CAnalyzeCaloric::save(CString fname)
 		}
 
 
-		
+		file.Close();
 
 
 		bRtn = true;

@@ -154,8 +154,8 @@ void CDlgAnalyzeCaloric::layoutCtrls()
 
 
 	//buttons
-	corLocateWindow(GetDlgItem(IDOK), 1-gap-button_w, 1-gap-button_h, button_w, button_h, rect);
-	corLocateWindow(GetDlgItem(IDCANCEL), 1-2*gap-2*button_w, 1-gap-button_h, button_w, button_h, rect);
+	corLocateWindow(GetDlgItem(IDCANCEL), 1-gap-button_w, 1-gap-button_h, button_w, button_h, rect);
+	corLocateWindow(GetDlgItem(IDOK), 1-2*gap-2*button_w, 1-gap-button_h, button_w, button_h, rect);
 	//corLocateWindow(GetDlgItem(IDC_BUTTON_RESET_PEAK), gap, 1-gap-button_h, button_w, button_h, rect);
 
 	corLocateWindow(GetDlgItem(IDC_BUTTON_CALORIC_PRINT), 0.5-button_w/2, 1-gap-button_h, button_w, button_h, rect);
