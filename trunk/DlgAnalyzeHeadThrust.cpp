@@ -723,11 +723,11 @@ void CDlgAnalyzeHeadThrust::showResult2()
 	// 1.2.1 chart
 	// 1.2.1.1 left
 	int chartIdx = 0;
-	drawHTTimeVelocityCurve(&(m_analyzeHeadThrust[0]), chartIdx, pValid, sign);
+	drawHTTimeVelocityCurve(&(m_analyzeHeadThrust[0]), this->m_pdVelLeft, chartIdx, pValid, sign);
 
 	// 1.2.1.2 right
 	chartIdx = 1;
-	drawHTTimeVelocityCurve(&(m_analyzeHeadThrust[1]), chartIdx, pValid, sign);
+	drawHTTimeVelocityCurve(&(m_analyzeHeadThrust[1]), this->m_pdVelRight, chartIdx, pValid, sign);
 
 	// 1.2.2 fill list detail
 	this->fillListDetail(&m_listHTUp, &(m_analyzeHeadThrust[0].m_listHeadThrust), &(m_analyzeHeadThrust[1].m_listHeadThrust),
@@ -747,11 +747,11 @@ void CDlgAnalyzeHeadThrust::showResult2()
 	// 2.2.1 chart
 	// 2.2.1.1 left
 	chartIdx = 2;
-	drawHTTimeVelocityCurve(&(m_analyzeHeadThrust[0]), chartIdx, pValid, sign);
+	drawHTTimeVelocityCurve(&(m_analyzeHeadThrust[0]), m_pdVelLeft, chartIdx, pValid, sign);
 
 	// 2.2.1.2 right
 	chartIdx = 3;
-	drawHTTimeVelocityCurve(&(m_analyzeHeadThrust[1]), chartIdx, pValid, sign);
+	drawHTTimeVelocityCurve(&(m_analyzeHeadThrust[1]), m_pdVelRight, chartIdx, pValid, sign);
 
 	// 2.2.2 fill list detail
 	fillListDetail(&m_listHTDown, &(m_analyzeHeadThrust[0].m_listHeadThrust), &(m_analyzeHeadThrust[1].m_listHeadThrust),
@@ -811,7 +811,7 @@ int getMatchedHT(CList<structHeadThrust*, structHeadThrust*>* pList0, CList<stru
 }
 
 void addDoubleArray(double* pSum, double* pAdd, int cout);
-void CDlgAnalyzeHeadThrust::drawHTTimeVelocityCurve(CAnalyzeHeadThrust* pAnalyze, int chartIdx, int* pValid, int sign)
+void CDlgAnalyzeHeadThrust::drawHTTimeVelocityCurve(CAnalyzeHeadThrust* pAnalyze, double* pEyeVel, int chartIdx, int* pValid, int sign)
 {
 	ASSERT(pAnalyze);
 	ASSERT(pValid);
@@ -839,7 +839,7 @@ void CDlgAnalyzeHeadThrust::drawHTTimeVelocityCurve(CAnalyzeHeadThrust* pAnalyze
 			seriesIdx = m_chart[chartIdx].AddSeries(scLine);		//series Ãß°¡
 
 			//addData2Series(&(m_chart[chartIdx].Series(seriesIdx)), m_pdVelLeft, pHT->eyeOnsetIdx-MS100, pHT->eyeOnsetIdx, MS500, m_ulEyeDataCount, FRAMERATE/1000.);
-			addData2Series(&(m_chart[chartIdx].Series(seriesIdx)), m_pdVelLeft, pHT->headOnsetIdx-MS100, pHT->headOnsetIdx, MS500, m_ulEyeDataCount, FRAMERATE/1000.);
+			addData2Series(&(m_chart[chartIdx].Series(seriesIdx)), pEyeVel, pHT->headOnsetIdx-MS100, pHT->headOnsetIdx, MS500, m_ulEyeDataCount, FRAMERATE/1000.);
 			m_chart[chartIdx].Series(seriesIdx).SetShowInLegend(true);
 			strTitle.Format("%d", int(seriesIdx/2));
 			m_chart[chartIdx].Series(seriesIdx).SetTitle(strTitle);
