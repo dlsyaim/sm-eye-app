@@ -72,7 +72,7 @@ private:
 	bool saveAnalyzeData();
 
 	void matchLeftRight();
-	void drawHTTimeVelocityCurve(CAnalyzeHeadThrust* pAnalyze, int chartIdx, int* pValid, int sign);
+	void drawHTTimeVelocityCurve(CAnalyzeHeadThrust* pAnalyze, double* pEyeVel, int chartIdx, int* pValid, int sign);
 	void fillListDetail(CListCtrl* pListCtrl, 
 						CList<structHeadThrust*, structHeadThrust*>* pList0, 
 						CList<structHeadThrust*, structHeadThrust*>* pList1,
