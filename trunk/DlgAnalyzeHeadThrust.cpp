@@ -15,12 +15,17 @@
 // CDlgAnalyzeHeadThrust 대화 상자입니다.
 
 //#define COLOR_EYE_VEL RGB(192, 128, 0)
-#define COLOR_EYE_VEL RGB(254, 176, 120)
+//#define COLOR_EYE_VEL RGB(254, 176, 120)
 #define COLOR_EYE_MEAN_VEL	RGB(255, 64, 64)
-#define COLOR_HEAD_VEL RGB(150, 150, 150)
+#define COLOR_EYE_VEL COLOR_EYE_MEAN_VEL
+//#define COLOR_HEAD_VEL RGB(150, 150, 150)
 #define COLOR_HEAD_MEAN_VEL RGB(0, 0, 0)
+#define COLOR_HEAD_VEL COLOR_HEAD_MEAN_VEL
 #define COLOR_EYE_VEL_SELECTED RGB(128, 254, 64)
 #define COLOR_HEAD_VEL_SELECTED (128, 128, 128)
+
+void setListCheckbox(CListCtrl* pListCtrl, int itemIndex, BOOL bCheck);
+
 
 IMPLEMENT_DYNAMIC(CDlgAnalyzeHeadThrust, CDialog)
 CDlgAnalyzeHeadThrust::CDlgAnalyzeHeadThrust(CWnd* pParent /*=NULL*/)
@@ -223,9 +228,8 @@ void CDlgAnalyzeHeadThrust::calEyeVelocity()
 		for(unsigned int i=M+1; i<m_ulEyeDataCount-M-1; i++)
 		{
 			// (2M/120) 으로 나눠줘야 한다.
-			m_pdVelLeft[i+M] = (m_pdLeft[i+M]-m_pdLeft[i-M])*60./M;
-			m_pdVelRight[i+M] = (m_pdRight[i+M]-m_pdRight[i-M])*60./M;
-
+			m_pdVelLeft[i] = (m_pdLeft[i+M]-m_pdLeft[i-M])*60./M;
+			m_pdVelRight[i] = (m_pdRight[i+M]-m_pdRight[i-M])*60./M;
 		}
 
 
@@ -261,12 +265,6 @@ void CDlgAnalyzeHeadThrust::analyzeThis()
 
 	this->m_analyzeHeadThrust[0].analyze(m_pdVelLeft, m_ulEyeDataCount, m_pdVelHead, m_ulAccDataCount);
 	this->m_analyzeHeadThrust[1].analyze(m_pdVelRight, m_ulEyeDataCount, m_pdVelHead, m_ulAccDataCount);
-
-	//this->matchLeftRight();
-
-	this->m_analyzeHeadThrust[0].calculateMeanVelocity();
-	this->m_analyzeHeadThrust[1].calculateMeanVelocity();
-
 
 }
 
@@ -356,6 +354,8 @@ void CDlgAnalyzeHeadThrust::initTChart()
 		
 		m_chart[i].GetAxis().GetLeft().GetTitle().SetCaption("Angluar Velocity(°/sec)");
 		m_chart[i].GetAxis().GetBottom().GetTitle().SetCaption("Time (ms)");
+		m_chart[i].GetAxis().GetBottom().SetAutomatic(false);
+		m_chart[i].GetAxis().GetBottom().SetMinMax(-100, 400);
 
 		m_chart[i].GetAxis().GetLeft().SetAutomatic(false);
 		if(i<2)
@@ -388,28 +388,28 @@ void CDlgAnalyzeHeadThrust::initTChart()
 		*/
 	}
 
-	//head vel - eye vel plot
+	//head acc - eye acc plot
 	for(int i=0;  i<4; i++)
 	{
 		this->m_chartVel[i].ClearChart();
 		m_chartVel[i].GetAspect().SetView3D(false);
 		m_chartVel[i].GetLegend().SetVisible(false);
 
-		m_chartVel[i].GetAxis().GetLeft().GetTitle().SetCaption("Eye Velocity(°/sec)");
-		m_chartVel[i].GetAxis().GetBottom().GetTitle().SetCaption("Head Velocity(°/sec)");
+		m_chartVel[i].GetAxis().GetLeft().GetTitle().SetCaption("Eye Acceleration(°/sec2)");
+		m_chartVel[i].GetAxis().GetBottom().GetTitle().SetCaption("Head Acceleration(°/sec2)");
 
 		m_chartVel[i].GetAxis().GetLeft().SetAutomatic(false);
 		m_chartVel[i].GetAxis().GetBottom().SetAutomatic(false);
 		if(i<2)
 		{
-			m_chartVel[i].GetAxis().GetLeft().SetMinMax(0, 500);
-			m_chartVel[i].GetAxis().GetBottom().SetMinMax(0, 500);
+			m_chartVel[i].GetAxis().GetLeft().SetMinMax(0, 10000);
+			m_chartVel[i].GetAxis().GetBottom().SetMinMax(0, 10000);
 		}
 		else
 		{
-			m_chartVel[i].GetAxis().GetLeft().SetMinMax(-500, 0);
+			m_chartVel[i].GetAxis().GetLeft().SetMinMax(-10000, 0);
 			m_chartVel[i].GetAxis().GetLeft().SetInverted(true);
-			m_chartVel[i].GetAxis().GetBottom().SetMinMax(-500, 0);
+			m_chartVel[i].GetAxis().GetBottom().SetMinMax(-10000, 0);
 			m_chartVel[i].GetAxis().GetBottom().SetInverted(true);
 		}
 
@@ -464,6 +464,7 @@ void CDlgAnalyzeHeadThrust::initTChart()
 }
 
 void addData2Series(CSeries* pSeries, double* pData, unsigned long startIdx, unsigned long xZeroIndex, int count, unsigned long lastIdx, double freq);
+/*
 void CDlgAnalyzeHeadThrust::showResult()
 {
 	initTChart();
@@ -653,7 +654,7 @@ void CDlgAnalyzeHeadThrust::showResult()
 
 	
 }
-
+*/
 
 
 void addData2Series(CSeries* pSeries, double* pData, unsigned long startIdx, unsigned long xZeroIndex, int count, unsigned long lastIdx, double freq)
@@ -697,6 +698,7 @@ void CDlgAnalyzeHeadThrust::showResult2()
 
 	// init event series
 	m_eventSeriesIdx = EU_EventFile::initEventSeries(&m_chartMain);
+	m_chartMain.Series(m_eventSeriesIdx).SetTitle("Event");
 
 	//event file 을 load한다.
 	CString fname = m_strTestFile;
@@ -730,8 +732,8 @@ void CDlgAnalyzeHeadThrust::showResult2()
 	drawHTTimeVelocityCurve(&(m_analyzeHeadThrust[1]), this->m_pdVelRight, chartIdx, pValid, sign);
 
 	// 1.2.2 fill list detail
-	this->fillListDetail(&m_listHTUp, &(m_analyzeHeadThrust[0].m_listHeadThrust), &(m_analyzeHeadThrust[1].m_listHeadThrust),
-					pValid, count);
+	this->fillListDetail(&m_listHTUp, &(m_analyzeHeadThrust[0]), &(m_analyzeHeadThrust[1]),
+					pValid, count, sign);
 
 
 
@@ -754,8 +756,8 @@ void CDlgAnalyzeHeadThrust::showResult2()
 	drawHTTimeVelocityCurve(&(m_analyzeHeadThrust[1]), m_pdVelRight, chartIdx, pValid, sign);
 
 	// 2.2.2 fill list detail
-	fillListDetail(&m_listHTDown, &(m_analyzeHeadThrust[0].m_listHeadThrust), &(m_analyzeHeadThrust[1].m_listHeadThrust),
-					pValid, count);
+	fillListDetail(&m_listHTDown, &(m_analyzeHeadThrust[0]), &(m_analyzeHeadThrust[1]),
+					pValid, count, sign);
 
 
 	//////////////////////////////////////////////////////////////////////
@@ -798,7 +800,7 @@ int getMatchedHT(CList<structHeadThrust*, structHeadThrust*>* pList0, CList<stru
 		pHT1 = pList1->GetNext(pos1);
 
 		if(pHT0 && pHT1 &&  
-			(pHT0->headPeakIdx == pHT1->headPeakIdx) &&	//같은 HT인지 확인 
+			//(pHT0->headPeakIdx == pHT1->headPeakIdx) &&	//같은 HT인지 확인 
 			(pHT0->valid || pHT1->valid) &&				//둘중 하나라도 valid한지
 			pHT0->headPeakVel*sign > 0)					//sign 확인
 		{
@@ -898,22 +900,38 @@ void CDlgAnalyzeHeadThrust::drawHTTimeVelocityCurve(CAnalyzeHeadThrust* pAnalyze
 
 
 void CDlgAnalyzeHeadThrust::fillListDetail(CListCtrl* pListCtrl, 
-						CList<structHeadThrust*, structHeadThrust*>* pList0, 
-						CList<structHeadThrust*, structHeadThrust*>* pList1,
-                        int* pValid, int validCount)
+						CAnalyzeHeadThrust* pAnalyzeLeft, 
+						CAnalyzeHeadThrust* pAnalyzeRight,
+                        int* pValid, int validCount, int sign)
 {
 	ASSERT(pListCtrl);
-	ASSERT(pList0);
-	ASSERT(pList1);
+	ASSERT(pAnalyzeLeft);
+	ASSERT(pAnalyzeRight);
 	ASSERT(pValid);
-	ASSERT(pList0->GetCount() == pList1->GetCount());
 
+	CList<structHeadThrust*, structHeadThrust*>* pList0 = &(pAnalyzeLeft->m_listHeadThrust);
+	CList<structHeadThrust*, structHeadThrust*>* pList1 = &(pAnalyzeRight->m_listHeadThrust);;
 
 	int count = (int)pList0->GetCount();
 	if(!count)
 		return;
 
 	pListCtrl->DeleteAllItems();
+
+
+	//mean value부터 넣는다.
+	int pnIdx = (sign == 1) ? 0 : 1;		//positive가 0, negative가 1 index	
+	double meanVal[] = {m_analyzeHeadThrust[0].m_structMeanHT[pnIdx].headPeakVel, 	//head peak acc
+						m_analyzeHeadThrust[0].m_structMeanHT[pnIdx].eyePeakVel,		//left eye acc
+						m_analyzeHeadThrust[1].m_structMeanHT[pnIdx].eyePeakVel,			//right eye acc
+						m_analyzeHeadThrust[0].m_structMeanHT[pnIdx].eyePeakVel/m_analyzeHeadThrust[0].m_structMeanHT[pnIdx].headPeakVel, //left gain
+						m_analyzeHeadThrust[1].m_structMeanHT[pnIdx].eyePeakVel/m_analyzeHeadThrust[0].m_structMeanHT[pnIdx].headPeakVel}; //right gain
+	CString strTitle = "Mean";
+	corAdd2List(pListCtrl, strTitle, meanVal, 5);
+	setListCheckbox(pListCtrl, 0, TRUE);
+
+
+
 
 	//뒤에서부터 검색한다.
 	POSITION pos0 = pList0->GetTailPosition();
@@ -937,6 +955,7 @@ void CDlgAnalyzeHeadThrust::fillListDetail(CListCtrl* pListCtrl,
 			
 			strCount.Format("%d", validCount--);
 			corAdd2List(pListCtrl, strCount, val, 5);
+			setListCheckbox(pListCtrl, 0, TRUE);
 		}
 	}
 
@@ -1001,10 +1020,11 @@ void CDlgAnalyzeHeadThrust::initListCtrls()
 		pList[i]->GetClientRect(&rect);
 		w = rect.Width();
 		DWORD dwStyle = pList[i]->GetExStyle();
-		dwStyle = (LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES);
+		dwStyle = (LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES | LVS_EX_CHECKBOXES);
 		pList[i]->SetExtendedStyle(dwStyle);
 
-		char* listD[6] = {"No", "Head Vel(°/s)", "L-Eye Vel(°/s)", "R-Eye Vel(°/s)", "L-Gain", "R-Gain"};
+
+		char* listD[6] = {"Visible", "Head Acc(°/s2)", "L-Eye Acc(°/s2)", "R-Eye Acc(°/s2)", "L-Gain", "R-Gain"};
 		double widthD[6] = {.1, .9/5, .9/5, .9/5, .9/5, .9/5};
 		for(int j=0; j<6; j++)
 			pList[i]->InsertColumn(j, listD[j], LVCFMT_CENTER, int(widthD[j]*w));
@@ -1012,7 +1032,7 @@ void CDlgAnalyzeHeadThrust::initListCtrls()
 }
 
 
-
+/*
 void CDlgAnalyzeHeadThrust::fillListDetail()
 {
 	m_listHTUp.DeleteAllItems();
@@ -1068,17 +1088,19 @@ void CDlgAnalyzeHeadThrust::fillListDetail()
 			{
 				strCount.Format("%d", posCount--);
 				corAdd2List(&this->m_listHTUp, strCount, val, 5);
+				setListCheckbox(&m_listHTUp, 0, TRUE);
 			}
 			else
 			{
 				strCount.Format("%d", negCount--);
 				corAdd2List(&this->m_listHTDown, strCount, val, 5);
+				setListCheckbox(&m_listHTDown, 0, TRUE);
 			}
 		}
 	}
 	
 }
-
+*/
 
 void CDlgAnalyzeHeadThrust::fillListSummary()
 {
@@ -1101,8 +1123,8 @@ void CDlgAnalyzeHeadThrust::fillListSummary()
 
 	corAdd2List(&m_listHTSummary, "Latency(ms)", latency, 4);
 	corAdd2List(&m_listHTSummary, "Gain", gain, 4);
-	corAdd2List(&m_listHTSummary, "Eye Velocity(°/s)", eyeVel, 4);
-	corAdd2List(&m_listHTSummary, "Head Velocity(°/s)", headVel, 4);
+	corAdd2List(&m_listHTSummary, "Eye Acceleration(°/sec2)", eyeVel, 4);
+	corAdd2List(&m_listHTSummary, "Head Acceleration(°/sec2)", headVel, 4);
 	
 	/*
 	int htCount[4] = {0,0,0,0};
@@ -1210,6 +1232,26 @@ BOOL CDlgAnalyzeHeadThrust::PreTranslateMessage(MSG* pMsg)
 
 void CDlgAnalyzeHeadThrust::OnLvnItemchangedListHtUp(NMHDR *pNMHDR, LRESULT *pResult)
 {
+
+	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
+
+	if(pNMLV->uChanged & LVIF_STATE) // item state has been changed
+	{
+		switch(pNMLV->uNewState & 0x3000)
+		{
+		case 0x2000: // new state: checked
+			//TRACE1("\n Item %d has been checked", pNMLV->iItem);
+			this->showHT(1, pNMLV->iItem, true); 
+			break;
+		case 0x1000: // new state: unchecked
+			//TRACE1("\n Item %d has been unchecked", pNMLV->iItem);
+			this->showHT(1, pNMLV->iItem, false);
+			break;
+		}
+   }
+   *pResult = 0;
+
+	/*
 	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	*pResult = 0;
@@ -1233,12 +1275,31 @@ void CDlgAnalyzeHeadThrust::OnLvnItemchangedListHtUp(NMHDR *pNMHDR, LRESULT *pRe
 		selectHT(lRow+1);
 
 		//this->selectSaccadeOnChart(lRow);
-	}
+	}*/
 }
 
 void CDlgAnalyzeHeadThrust::OnLvnItemchangedListHtDown(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
+
+	if(pNMLV->uChanged & LVIF_STATE) // item state has been changed
+	{
+		switch(pNMLV->uNewState & 0x3000)
+		{
+		case 0x2000: // new state: checked
+			TRACE1("\n Item %d has been checked", pNMLV->iItem);
+			this->showHT(-1, pNMLV->iItem, true); 
+			break;
+		case 0x1000: // new state: unchecked
+			TRACE1("\n Item %d has been unchecked", pNMLV->iItem);
+			this->showHT(-1, pNMLV->iItem, false);
+			break;
+		}
+   }
+   *pResult = 0;
+
+
+	/*LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	LPNMITEMACTIVATE temp = (LPNMITEMACTIVATE) pNMHDR;
     long lRow = 0;                                  // 로우
@@ -1255,11 +1316,32 @@ void CDlgAnalyzeHeadThrust::OnLvnItemchangedListHtDown(NMHDR *pNMHDR, LRESULT *p
 		lRow = temp->iItem;                             // 로우값(클릭한 로우리턴)
 		nCol = temp->iSubItem;                          // 컬럼값(클릭한 컬럼리턴 : 님 경우 별 쓸모없겠지만..)
 
+		
 		selectHT(-1*(lRow+1));
 
 		//this->selectSaccadeOnChart(lRow);
 	}
-	*pResult = 0;
+	*pResult = 0;*/
+}
+
+void CDlgAnalyzeHeadThrust::showHT(int sign, int idxHT, bool bVisible)
+{
+	// positive HT면 chart 0,1 번, minus면 2,3번
+	int chartIdx = sign>0 ? 0 : 2;
+
+	int seriesIdx = idxHT*2;
+	//마지막 두개는 mean plot이다.
+	if(seriesIdx < m_chart[chartIdx].GetSeriesCount())
+	{
+        //left eye
+		m_chart[chartIdx].Series(seriesIdx).SetActive(bVisible);
+		m_chart[chartIdx].Series(seriesIdx+1).SetActive(bVisible);
+
+		//right ee
+		m_chart[chartIdx+1].Series(seriesIdx).SetActive(bVisible);
+		m_chart[chartIdx+1].Series(seriesIdx+1).SetActive(bVisible);
+	}
+
 }
 
 void CDlgAnalyzeHeadThrust::selectHT(int selectedHT)
@@ -1649,3 +1731,8 @@ void CDlgAnalyzeHeadThrust::OnBeforeDrawSeriesTchartHeadThrustMain()
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	EU_EventFile::adjustEventLocation(&m_chartMain, this->m_eventSeriesIdx);
 }*/
+
+void setListCheckbox(CListCtrl* pListCtrl, int itemIndex, BOOL bCheck)
+{
+	pListCtrl->SetItemState(itemIndex, UINT((int(bCheck) + 1) << 12), LVIS_STATEIMAGEMASK);
+}

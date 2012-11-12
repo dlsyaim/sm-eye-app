@@ -65,6 +65,7 @@ bool getSaccadeParam(double* pEye, unsigned long startIdx, unsigned long endIdx,
 	///////////////////////////////////////////////
     //find max velocity;
 	unsigned char M = 3;	//velocity를 구하기 위한 M (1000/120*M ms)
+	//unsigned char M = 4;	//velocity를 구하기 위한 M (1000/120*M ms)
 	unsigned long peakIdx = 0;
 	double maxDiff =  getMaxAbsDiff(pEye, startIdx, endIdx, &peakIdx, M);
 	pSaccade->peakVel =maxDiff/(double(M)/FRAMERATE);	//degree/sec

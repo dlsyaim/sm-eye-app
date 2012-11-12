@@ -1,4 +1,4 @@
-//#define FOR_ASAN
+#define FOR_ASAN
 
 
 #define DEL(x) { if(x) {delete []x; x = NULL;}}
@@ -13,6 +13,7 @@
 
 
 #define MS20 (int(double(20)/(double(1000)/FRAMERATE)))
+#define MS40 (int(double(20)/(double(1000)/FRAMERATE)))
 #define MS50 (int(double(50)/(double(1000)/FRAMERATE)))
 #define MS100 (int(double(100)/(double(1000)/FRAMERATE)))
 #define MS200 (int(double(200)/(double(1000)/FRAMERATE)))

@@ -3,9 +3,21 @@
 #include "corwlDefines.h"
 
 #include "math.h"
+#include "linreg.h"
+
+unsigned long findPeakAcc(double* pVel, unsigned long startIdx, unsigned long endIdx, int M, unsigned long count, int sign);
+double getAcc(double* pVel , int startIdx, int M);
 
 CAnalyzeHeadThrust::CAnalyzeHeadThrust(void)
 {
+
+	/*double x[] = { 71,  73,  64,  65,  61,  70,  65,  72,  63,  67,  64};
+	double y[] = {160, 183, 154, 168, 159, 180, 145, 210, 132, 168, 141};
+	LinearRegression lr(x, y, 11); 
+	double b = lr.getB();
+	double a = lr.getA();
+	*/
+
 	m_pdEyeVel = m_pdHeadVel = NULL;
 	m_ulEyeDataCount = m_ulHeadDataCount = 0;
 
@@ -41,7 +53,7 @@ CAnalyzeHeadThrust::~CAnalyzeHeadThrust(void)
 
 void CAnalyzeHeadThrust::deleteAllHTs()
 {
-	int count = this->m_listHeadThrust.GetCount();
+	int count = int(this->m_listHeadThrust.GetCount());
 
 	POSITION pos = m_listHeadThrust.GetHeadPosition();
 	for(int i=0; i<count; i++)
@@ -61,6 +73,8 @@ unsigned long findPeak(double* pDat, unsigned long startIdx, int count, unsigned
 
 void CAnalyzeHeadThrust::analyze(double* pEyeVel, unsigned long eyeCount, double* pTarget, unsigned long targetCount)
 {
+	
+
 	this->m_pdEyeVel = pEyeVel;
 	this->m_ulEyeDataCount = eyeCount;
 	this->m_pdHeadVel = pTarget;
@@ -76,7 +90,7 @@ void CAnalyzeHeadThrust::analyze(double* pEyeVel, unsigned long eyeCount, double
 
 	double ratio = double(FRAMERATE)/ACC_SAMPLERATE;
 	int sign = 1;
-	for(int i=0; i<targetCount; i++)
+	for(unsigned long i=0; i<targetCount; i++)
 	{
 		if(fabs(pTarget[i])>peakThres)
 		{
@@ -93,12 +107,26 @@ void CAnalyzeHeadThrust::analyze(double* pEyeVel, unsigned long eyeCount, double
 
 					pHT->headOnsetIdx = onsetIdx;
 					pHT->eyeOnsetIdx = (unsigned long)(onsetIdx*ratio + .5);
+ 
+					int M = 3;
+					//가속도가 최대가 되는 지점을 찾는다.
+					// 100ms 이내에 M개의 velocity가 증가 함수 혹은 감소함수인 것 중 가장 큰 것을 찾는다.
+					// acc가 sign과 일치해야 한다.
+					pHT->eyePeakIdx = findPeakAcc(m_pdEyeVel, pHT->eyeOnsetIdx, pHT->eyeOnsetIdx + MS100, M, eyeCount, 
+								pTarget[onsetIdx+int(ACC_SAMPLERATE/10)] > 0 ? 1:-1);	//onset+50ms 위치의 sign으로 +,-를 찾는다.
+					pHT->headPeakIdx = findPeakAcc(m_pdHeadVel, pHT->eyeOnsetIdx, pHT->eyeOnsetIdx + MS100, M, eyeCount, 
+								pTarget[onsetIdx+int(ACC_SAMPLERATE/10)] > 0 ? 1:-1);	//onset+50ms 위치의 sign으로 +,-를 찾는다.
+					pHT->eyePeakVel = pHT->eyePeakIdx ? getAcc(m_pdEyeVel, pHT->eyePeakIdx, M) : 0;
+					pHT->headPeakVel = pHT->headPeakIdx ? getAcc(m_pdHeadVel, pHT->headPeakIdx, M) : 0;
+
+							
+					/*
 					pHT->headPeakIdx = findPeak(pTarget, pHT->headOnsetIdx, ACC_SAMPLERATE/4, targetCount, 
 											pTarget[onsetIdx+int(ACC_SAMPLERATE/20)] > 0 ? 1:-1);	//onset+50ms 위치의 sign으로 +,-를 찾는다.
 					pHT->headPeakVel = pTarget[pHT->headPeakIdx];
 					pHT->eyePeakIdx = findPeak(pEyeVel, pHT->eyeOnsetIdx, FRAMERATE/4, eyeCount,
 											pTarget[onsetIdx+int(ACC_SAMPLERATE/20)] > 0 ? 1: -1);	//head sign과 같은 sign의 peak를 찾는다.
-					pHT->eyePeakVel = pEyeVel[pHT->eyePeakIdx];
+					pHT->eyePeakVel = pEyeVel[pHT->eyePeakIdx];*/
 					pHT->valid = false;
 
 
@@ -134,6 +162,9 @@ void CAnalyzeHeadThrust::analyze(double* pEyeVel, unsigned long eyeCount, double
 		}
 	}
 
+
+	//mean plot을 분석한다.
+	this->calculateMeanVelocity();
 	
 }
 unsigned long inverseFindLowerThan(double* pDat, unsigned long startIdx, int count, double thres)
@@ -217,7 +248,7 @@ void CAnalyzeHeadThrust::calculateMeanVelocity()
 	memset(&(m_structMeanHT[0]), 0, sizeof(structHeadThrust));
 	memset(&(m_structMeanHT[1]), 0, sizeof(structHeadThrust));
 
-	int count = this->m_listHeadThrust.GetCount();
+	int count = int(this->m_listHeadThrust.GetCount());
 	POSITION pos = m_listHeadThrust.GetHeadPosition();
 
 	int posCount = 0, negCount = 0;
@@ -263,6 +294,7 @@ void CAnalyzeHeadThrust::calculateMeanVelocity()
 
 	//분석한다.
 	int pn;
+	int M = 3;
 	//positive
 	if(posCount)
 	{
@@ -270,6 +302,18 @@ void CAnalyzeHeadThrust::calculateMeanVelocity()
 		pn = HEAD_THRUST_POSITIVE;
 		this->m_structMeanHT[pn].eyeOnsetIdx = m_structMeanHT[pn].headOnsetIdx = 0;
 
+
+		
+		//가속도가 최대가 되는 지점을 찾는다.
+		// 100ms 이내에 M개의 velocity가 증가 함수 혹은 감소함수인 것 중 가장 큰 것을 찾는다.
+		// acc가 sign과 일치해야 한다.
+		m_structMeanHT[pn].eyePeakIdx = findPeakAcc(m_ppMeanEyeVel[pn], 0, MS100, M, FRAMERATE-1, 1);
+		m_structMeanHT[pn].headPeakIdx = findPeakAcc(m_ppMeanHeadVel[pn], 0, MS100, M, FRAMERATE-1, 1); 
+		m_structMeanHT[pn].eyePeakVel = getAcc(m_ppMeanEyeVel[pn], m_structMeanHT[pn].eyePeakIdx, M) ;
+		m_structMeanHT[pn].headPeakVel = getAcc(m_ppMeanHeadVel[pn], m_structMeanHT[pn].headPeakIdx, M) ;
+
+
+		/*
 		//eye peak index와 peak 값을 구한다.
 		m_structMeanHT[pn].eyePeakIdx = findPeak(m_ppMeanEyeVel[pn], 0, FRAMERATE/4, FRAMERATE-1, 1);
 		m_structMeanHT[pn].eyePeakVel = m_ppMeanEyeVel[pn][m_structMeanHT[pn].eyePeakIdx];
@@ -277,6 +321,7 @@ void CAnalyzeHeadThrust::calculateMeanVelocity()
 		//head peak index와 peak값을 구하낟.
 		m_structMeanHT[pn].headPeakIdx = findPeak(m_ppMeanHeadVel[pn], 0, ACC_SAMPLERATE, ACC_SAMPLERATE-1, 1);
 		m_structMeanHT[pn].headPeakVel = m_ppMeanHeadVel[pn][m_structMeanHT[pn].headPeakIdx];
+		*/
 	}
 	if(negCount)
 	{
@@ -284,6 +329,12 @@ void CAnalyzeHeadThrust::calculateMeanVelocity()
 		pn = HEAD_THRUST_NEGATIVE;
 		this->m_structMeanHT[pn].eyeOnsetIdx = m_structMeanHT[pn].headOnsetIdx = 0;
 
+		m_structMeanHT[pn].eyePeakIdx = findPeakAcc(m_ppMeanEyeVel[pn], 0, MS100, M, FRAMERATE-1, -1);
+		m_structMeanHT[pn].headPeakIdx = findPeakAcc(m_ppMeanHeadVel[pn], 0, MS100, M, FRAMERATE-1, -1); 
+		m_structMeanHT[pn].eyePeakVel = getAcc(m_ppMeanEyeVel[pn], m_structMeanHT[pn].eyePeakIdx, M) ;
+		m_structMeanHT[pn].headPeakVel = getAcc(m_ppMeanHeadVel[pn], m_structMeanHT[pn].headPeakIdx, M) ;
+
+		/*
 		//eye peak index와 peak 값을 구한다.
 		m_structMeanHT[pn].eyePeakIdx = findPeak(m_ppMeanEyeVel[pn], 0, FRAMERATE/4, FRAMERATE-1, -1);
 		m_structMeanHT[pn].eyePeakVel = m_ppMeanEyeVel[pn][m_structMeanHT[pn].eyePeakIdx];
@@ -291,8 +342,10 @@ void CAnalyzeHeadThrust::calculateMeanVelocity()
 		//head peak index와 peak값을 구하낟.
 		m_structMeanHT[pn].headPeakIdx = findPeak(m_ppMeanHeadVel[pn], 0, ACC_SAMPLERATE, ACC_SAMPLERATE-1, -1);
 		m_structMeanHT[pn].headPeakVel = m_ppMeanHeadVel[pn][m_structMeanHT[pn].headPeakIdx];
+		*/
 	}
 }
+
 
 void addA2B(double* pA, double* pB, int count)
 {
@@ -300,11 +353,12 @@ void addA2B(double* pA, double* pB, int count)
 		pB[i] += pA[i];
 
 }
+	
 
 int CAnalyzeHeadThrust::getValidHTCount(int sign)
 {
 	//sign이 0이면 전체 개수, 아니면 같은 부호의 Head velocity값의 개수만 리턴
-	int count = this->m_listHeadThrust.GetCount();
+	int count = int(this->m_listHeadThrust.GetCount());
 	int num = 0;
 
 	//전체 개수
@@ -326,7 +380,7 @@ int CAnalyzeHeadThrust::getValidHTCount(int sign)
 int CAnalyzeHeadThrust::findHT(double headPeakVel, double eyePeakVel)
 {
 	int idx = -1;
-	int count = this->m_listHeadThrust.GetCount();
+	int count = int(this->m_listHeadThrust.GetCount());
 
 	POSITION pos = m_listHeadThrust.GetHeadPosition();
 	structHeadThrust* pHT = NULL;
@@ -439,4 +493,80 @@ bool CAnalyzeHeadThrust::load(CString fname)
 	}
 
 	return bRtn;
+}
+
+
+unsigned long findPeakAcc(double* pVel, unsigned long startIdx, unsigned long endIdx, int M, unsigned long count, int sign)
+{
+	double maxVal = 0;
+	unsigned long maxIdx = 0;
+
+	double acc;
+	for(unsigned long i = startIdx; i<=endIdx; i++)
+	{
+		if(i+M < count)
+		{
+			bool bSameSlopeSign = true;
+			int slopeSign = pVel[startIdx+1] - pVel[startIdx];	//증가 혹은 감소 함수인지 확인
+			for(int j=0; j<M-1; j++)
+			{
+				if((pVel[i+j+1] - pVel[i+j]) * slopeSign <0)
+					bSameSlopeSign = false;
+			}
+			
+			//증가 혹은 감소 함소일 경우에만
+			if(bSameSlopeSign)
+			{
+				acc = getAcc(pVel, i, M);
+				if(acc* sign > 0 && fabs(acc) > fabs(maxVal))
+				{
+					maxVal = acc;
+					maxIdx = i;
+				}
+			}
+			else
+                break;
+		}
+
+	}
+
+	return maxIdx;
+
+	/*
+	unsigned long idx = 0;
+
+	double mul = (sign>0) ? 1:-1;
+
+	double peakVal = 0;
+	unsigned long peakIdx = 0;
+
+
+	for(int i=0; i<count; i++)
+	{
+		if( (startIdx+i < lastIdx) &&(pDat[startIdx+i]*mul > peakVal*mul) )
+		{
+			peakVal = pDat[startIdx+i];
+			peakIdx = startIdx+i;
+		}
+
+	}
+
+	return peakIdx;*/
+}
+double getAcc(double* pVel , int startIdx, int M)
+{
+	double acc = 0;
+
+	double* pX = new double[M];
+	for(int i=0; i<M; i++)
+		pX[i] = i*(1.0f/FRAMERATE);
+
+	double* pY = &(pVel[startIdx]);
+	
+	LinearRegression lr(pX, pY, M); 
+	acc = lr.getB();
+	
+	delete []pX;
+
+	return acc;
 }

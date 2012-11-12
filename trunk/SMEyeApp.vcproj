@@ -378,6 +378,9 @@
 				RelativePath=".\tchart\lineseries.cpp">
 			</File>
 			<File
+				RelativePath=".\linreg.cpp">
+			</File>
+			<File
 				RelativePath=".\ListCtrlEx\ListCtrlEx.cpp">
 			</File>
 			<File
@@ -780,6 +783,9 @@
 			</File>
 			<File
 				RelativePath=".\tchart\lineseries.h">
+			</File>
+			<File
+				RelativePath=".\linreg.h">
 			</File>
 			<File
 				RelativePath=".\ListCtrlEx\ListCtrlEx.h">
