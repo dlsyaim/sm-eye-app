@@ -61,23 +61,29 @@ private:
 	bool loadAnalyzeData();
 	void initListCtrls();
 	void initTChart();
-	void showResult();
+	//void showResult();
 	void showResult2();
-	void fillListDetail();
+	//void fillListDetail();
 	void fillListSummary();
 	void selectListDetail();
 	void selectHT(int idxHT);
+	void showHT(int sign, int idxHT, bool bVisible);
 	int m_nSelectedHT; // +면 up -면 down, 0이면 non-select
 	void deleteHT(int idxHT);
 	bool saveAnalyzeData();
 
 	void matchLeftRight();
 	void drawHTTimeVelocityCurve(CAnalyzeHeadThrust* pAnalyze, double* pEyeVel, int chartIdx, int* pValid, int sign);
-	void fillListDetail(CListCtrl* pListCtrl, 
+	/*void fillListDetail(CListCtrl* pListCtrl, 
 						CList<structHeadThrust*, structHeadThrust*>* pList0, 
 						CList<structHeadThrust*, structHeadThrust*>* pList1,
-                        int* pValid, int validCount);
-
+                        int* pValid, int validCount);*/
+	void fillListDetail(CListCtrl* pListCtrl, 
+						CAnalyzeHeadThrust* pAnalyzeLeft,
+						CAnalyzeHeadThrust* pAnalyzeRight,
+                        int* pValid, int validCount, int sign);
+	
+	
 public:
 	
 	DECLARE_EVENTSINK_MAP()
