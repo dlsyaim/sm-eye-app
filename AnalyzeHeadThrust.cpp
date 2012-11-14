@@ -398,6 +398,20 @@ int CAnalyzeHeadThrust::findHT(double headPeakVel, double eyePeakVel)
 	return idx;
 }
 
+int CAnalyzeHeadThrust::findHTLocation(structHeadThrust* pHT)	//pHT가 들어 있는 item의 위치를 리턴해 준다.
+{
+	int idx = -1;
+	int count = int(m_listHeadThrust.GetCount());
+	POSITION pos = m_listHeadThrust.GetHeadPosition();
+	for(int i=0; i<count; i++)
+	{
+		if(m_listHeadThrust.GetNext(pos) == pHT)
+			idx = i;
+	}
+
+	return idx;
+}
+
 bool CAnalyzeHeadThrust::deleteHT(int idx)
 {
 	bool bRtn = false;

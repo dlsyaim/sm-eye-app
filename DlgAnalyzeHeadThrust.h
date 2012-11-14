@@ -67,9 +67,11 @@ private:
 	void fillListSummary();
 	void selectListDetail();
 	void selectHT(int idxHT);
+	void selectHT2(int idxHT);
 	void showHT(int sign, int idxHT, bool bVisible);
 	int m_nSelectedHT; // +면 up -면 down, 0이면 non-select
 	void deleteHT(int idxHT);
+	void deleteHT2(int idxHT);
 	bool saveAnalyzeData();
 
 	void matchLeftRight();
