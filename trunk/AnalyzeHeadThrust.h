@@ -50,6 +50,8 @@ public:
 	int findHT(double headPeakVel, double eyePeakVel);
 	bool deleteHT(int idx);
 
+	int findHTLocation(structHeadThrust* pHT);	//pHT가 들어 있는 item의 위치를 리턴해 준다.
+
 private:
 	
 	

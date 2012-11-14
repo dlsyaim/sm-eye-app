@@ -314,10 +314,15 @@ void corAdd2List(CListCtrl* pList, CString strParam, double* pValue, int count)
 
 void corChangeListValue(CListCtrl* pList, int nItem, double* pValue, int count)
 {
+	if(!pList || !pList->GetSafeHwnd())
+		return;
+	if(nItem >= pList->GetItemCount())
+		return;
+
 	CString str;
 	for(int i=0; i<count; i++)
 	{
-		str.Format("%.1f", pValue[i]);
+		str.Format("%.2f", pValue[i]);
 		pList->SetItemText(nItem, i+1, str);
 	}
 }

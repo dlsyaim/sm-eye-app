@@ -127,7 +127,8 @@ void CDlgAnalyzeHeadThrust::layoutCtrls()
 	this->GetClientRect(&rect);
 
 	//main chart
-	corLocateWindow(&m_chartMain, gap, gap, 1-3*gap-2*chart_w, chart_h, rect);
+	//corLocateWindow(&m_chartMain, gap, gap, 1-3*gap-2*chart_w, chart_h, rect);
+	corLocateWindow(&m_chartMain, gap, gap, 1-2*gap, chart_h, rect);
 	corLocateWindow(GetDlgItem(IDC_LIST_HT_SUMMARY), 1-gap-2*chart_w, gap, 2*chart_w, chart_h, rect);
 
 	//up
@@ -955,7 +956,10 @@ void CDlgAnalyzeHeadThrust::fillListDetail(CListCtrl* pListCtrl,
 			
 			strCount.Format("%d", validCount--);
 			corAdd2List(pListCtrl, strCount, val, 5);
-			setListCheckbox(pListCtrl, 0, TRUE);
+
+			
+			setListCheckbox(pListCtrl, 0, TRUE);			//checkbox set
+			pListCtrl->SetItemData(0, (DWORD_PTR)pHT0);		//Ht point를 저장해 놓아서 나중에 찾을 수 있게 한다.
 		}
 	}
 
@@ -1222,7 +1226,7 @@ BOOL CDlgAnalyzeHeadThrust::PreTranslateMessage(MSG* pMsg)
 		}
 		else if(pMsg->wParam == 46) //DEL
 		{
-			deleteHT(this->m_nSelectedHT);
+			deleteHT2(this->m_nSelectedHT);
 		}
 			
 	}
@@ -1237,7 +1241,7 @@ void CDlgAnalyzeHeadThrust::OnLvnItemchangedListHtUp(NMHDR *pNMHDR, LRESULT *pRe
 
 	if(pNMLV->uChanged & LVIF_STATE) // item state has been changed
 	{
-		switch(pNMLV->uNewState & 0x3000)
+		switch(pNMLV->uNewState & 0x3000)	//checkbox click
 		{
 		case 0x2000: // new state: checked
 			//TRACE1("\n Item %d has been checked", pNMLV->iItem);
@@ -1247,6 +1251,17 @@ void CDlgAnalyzeHeadThrust::OnLvnItemchangedListHtUp(NMHDR *pNMHDR, LRESULT *pRe
 			//TRACE1("\n Item %d has been unchecked", pNMLV->iItem);
 			this->showHT(1, pNMLV->iItem, false);
 			break;
+		}
+
+		if(pNMLV->uNewState == 3)		// 새롭게 선택되었다면
+		{
+			//Down에서 선택된 것이 있다면 List에서 해제한다.
+			if(m_nSelectedHT<0)
+				m_listHTDown.SetItemState(-1*m_nSelectedHT - 1, 0, LVIS_FOCUSED | LVIS_SELECTED);
+			
+	 
+			this->selectHT2(pNMLV->iItem+1);
+			
 		}
    }
    *pResult = 0;
@@ -1284,7 +1299,7 @@ void CDlgAnalyzeHeadThrust::OnLvnItemchangedListHtDown(NMHDR *pNMHDR, LRESULT *p
 
 	if(pNMLV->uChanged & LVIF_STATE) // item state has been changed
 	{
-		switch(pNMLV->uNewState & 0x3000)
+		switch(pNMLV->uNewState & 0x3000)		//checkbox click
 		{
 		case 0x2000: // new state: checked
 			TRACE1("\n Item %d has been checked", pNMLV->iItem);
@@ -1294,6 +1309,17 @@ void CDlgAnalyzeHeadThrust::OnLvnItemchangedListHtDown(NMHDR *pNMHDR, LRESULT *p
 			TRACE1("\n Item %d has been unchecked", pNMLV->iItem);
 			this->showHT(-1, pNMLV->iItem, false);
 			break;
+		}
+
+		if(pNMLV->uNewState == 3)		// 새롭게 선택되었다면
+		{
+			//Up에서 선택된 것이 있다면 List에서 해제한다.
+			if(m_nSelectedHT>0)
+				m_listHTUp.SetItemState(m_nSelectedHT - 1, 0, LVIS_FOCUSED | LVIS_SELECTED);
+			
+	 
+			// vel-vel 커브에 표시한다.
+			this->selectHT2(-1*(pNMLV->iItem+1));
 		}
    }
    *pResult = 0;
@@ -1329,6 +1355,7 @@ void CDlgAnalyzeHeadThrust::showHT(int sign, int idxHT, bool bVisible)
 	// positive HT면 chart 0,1 번, minus면 2,3번
 	int chartIdx = sign>0 ? 0 : 2;
 
+	// time plot에서 
 	int seriesIdx = idxHT*2;
 	//마지막 두개는 mean plot이다.
 	if(seriesIdx < m_chart[chartIdx].GetSeriesCount())
@@ -1425,6 +1452,48 @@ void CDlgAnalyzeHeadThrust::selectHT(int selectedHT)
 }
 
 
+void CDlgAnalyzeHeadThrust::selectHT2(int selectedHT)
+{
+	//기존 선택된 것을 원래 컬러로 
+	if(m_nSelectedHT)
+	{
+		//기존 선택 series를 원래 색으로 바꾼다.
+		int chartIdx = m_nSelectedHT > 0 ? 0 : 2;		//plus면 chart 0,1번 minum면 2,3번
+		CListCtrl* pList = m_nSelectedHT > 0  ? &m_listHTUp : &m_listHTDown;
+		//list에서 이전에 선택되었던 ROW 선택 해제
+		pList->SetItemState(abs(m_nSelectedHT)-1, 0,  LVIS_FOCUSED | LVIS_SELECTED);
+		
+		// head vel-eye vel plot
+		m_chartVel[chartIdx].GetTools().GetItems(0).SetActive(false);
+		m_chartVel[chartIdx+1].GetTools().GetItems(0).SetActive(false);	
+	}
+
+	//선택된 것을 선택 컬러로
+	this->m_nSelectedHT = selectedHT;
+	if(m_nSelectedHT)
+	{
+		//기존 선택 series를 원래 색으로 바꾼다.
+		int chartIdx = m_nSelectedHT > 0 ? 0 : 2;		//plus면 chart 0,1번 minum면 2,3번
+		
+		// head vel-eye vel plot
+		double x,y;
+		//left eye
+		m_chartVel[chartIdx].GetTools().GetItems(0).SetActive(true);
+		x = m_chartVel[chartIdx].Series(0).GetXValues().GetValue(abs(m_nSelectedHT)-1);
+		y = m_chartVel[chartIdx].Series(0).GetYValues().GetValue(abs(m_nSelectedHT)-1);
+		m_chartVel[chartIdx].GetTools().GetItems(0).GetAsTeeCursor().SetXVal(x);
+		m_chartVel[chartIdx].GetTools().GetItems(0).GetAsTeeCursor().SetYVal(y);
+		
+		//right eye
+		m_chartVel[chartIdx+1].GetTools().GetItems(0).SetActive(true);
+		x = m_chartVel[chartIdx+1].Series(0).GetXValues().GetValue(abs(m_nSelectedHT)-1);
+		y = m_chartVel[chartIdx+1].Series(0).GetYValues().GetValue(abs(m_nSelectedHT)-1);
+		m_chartVel[chartIdx+1].GetTools().GetItems(0).GetAsTeeCursor().SetXVal(x);
+		m_chartVel[chartIdx+1].GetTools().GetItems(0).GetAsTeeCursor().SetYVal(y);
+
+	}
+}
+
 void CDlgAnalyzeHeadThrust::OnClickTchartHtVelocityChart()
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
@@ -1452,14 +1521,102 @@ void CDlgAnalyzeHeadThrust::OnClickTchartHtVelocityChart()
 	pList->SetItemState(idx,  LVIS_FOCUSED | LVIS_SELECTED,  LVIS_FOCUSED | LVIS_SELECTED);
 }
 
+void CDlgAnalyzeHeadThrust::deleteHT2(int idxHT)
+{
+	//idxHT는 CCtrlList에 몇번째 열인지를 나타내고 있다.
+	if(!idxHT)
+		return;
+
+	// delete 시 해야 할 일
+	// 0. listctrl에서 list의 몇번째 item인지 확인
+	// 1. list에서 valid를 false로 
+	// 2. chart에서 제거
+	// 3. listctrl에서 제거
+	// 4. mean update (clistctrl)
+	// 5. mean update (series)
+
+	// 0. listctrl에서 list의 몇번째 item인지 확인하자.
+	CListCtrl* pListCtrl = (idxHT>0) ? (&m_listHTUp) : (&m_listHTDown);
+	POSITION pos = pListCtrl->GetFirstSelectedItemPosition();
+	int nItem = pListCtrl->GetNextSelectedItem(pos);			//row를 구한다.
+	if(nItem == -1) return;
+
+	structHeadThrust* pHT = (structHeadThrust*)(pListCtrl->GetItemData(nItem));
+	if(!pHT) return;
+	int nListPos = this->m_analyzeHeadThrust[0].findHTLocation(pHT);
+
+	if(nListPos == -1)
+		return;
+
+	// 1. list에서 item을 제거
+	this->m_analyzeHeadThrust[0].deleteHT(nListPos);
+	this->m_analyzeHeadThrust[1].deleteHT(nListPos);
+
+	// 2. chart에서 제거
+	int chartIdx = idxHT > 0 ? 0 : 2;		//plus면 chart 0,1번 minum면 2,3번
+	//idxHT*2, idxHT*2+1번째 series를 제거한다.
+	int seriesIdx = nItem*2;
+	
+	//left (eye, head)
+	// seriesIdx+1 부터 제거해야 한다.
+	m_chart[chartIdx].RemoveSeries(seriesIdx+1);
+	m_chart[chartIdx].RemoveSeries(seriesIdx);		
+	m_chartVel[chartIdx].Series(0).Delete(abs(idxHT)-1);
+	
+	m_chart[chartIdx+1].RemoveSeries(seriesIdx+1);
+	m_chart[chartIdx+1].RemoveSeries(seriesIdx);
+	m_chartVel[chartIdx+1].Series(0).Delete(abs(idxHT)-1);
+
+
+	// 3. listctrl에서 제거
+	pListCtrl->DeleteItem(nItem);
+
+	// 4. mean update (clistctrl)
+	//mean value부터 넣는다.
+	int pnIdx = idxHT > 0 ? 0 : 1;		//positive가 0, negative가 1 index	
+	double meanVal[] = {m_analyzeHeadThrust[0].m_structMeanHT[pnIdx].headPeakVel, 	//head peak acc
+						m_analyzeHeadThrust[0].m_structMeanHT[pnIdx].eyePeakVel,		//left eye acc
+						m_analyzeHeadThrust[1].m_structMeanHT[pnIdx].eyePeakVel,			//right eye acc
+						m_analyzeHeadThrust[0].m_structMeanHT[pnIdx].eyePeakVel/m_analyzeHeadThrust[0].m_structMeanHT[pnIdx].headPeakVel, //left gain
+						m_analyzeHeadThrust[1].m_structMeanHT[pnIdx].eyePeakVel/m_analyzeHeadThrust[0].m_structMeanHT[pnIdx].headPeakVel}; //right gain
+	int itemIdx = pListCtrl->GetItemCount();
+	corChangeListValue(pListCtrl, itemIdx-1, meanVal, 5);
+
+	// 5. mean update (series)
+	for(int LR=0; LR<2; LR++)
+	{
+		//마지막에서 두번째 것이 mean eye
+		seriesIdx = m_chart[chartIdx + LR].GetSeriesCount()-2;	//
+		m_chart[chartIdx+LR].Series(seriesIdx).Clear();
+		int signIdx = idxHT>0 ? 0 : 1;
+		for(int i=0; i<MS400; i++)
+			m_chart[chartIdx + LR].Series(seriesIdx).AddXY(double(i)/FRAMERATE*1000, m_analyzeHeadThrust[LR].m_ppMeanEyeVel[signIdx][i], NULL, COLOR_EYE_MEAN_VEL);
+		//마지막 series가 mean head
+		seriesIdx = m_chart[chartIdx + LR].GetSeriesCount()-1;
+		m_chart[chartIdx+LR].Series(seriesIdx).Clear();
+		for(int i=0; i<MS400; i++)
+			m_chart[chartIdx+LR].Series(seriesIdx).AddXY(double(i)/FRAMERATE*1000, m_analyzeHeadThrust[LR].m_ppMeanHeadVel[signIdx][i], NULL, COLOR_HEAD_MEAN_VEL);
+		
+		
+		//left head vel-eye vel point plot
+		m_chartVel[chartIdx].Series(1).GetXValues().SetValue(0, m_analyzeHeadThrust[LR].m_structMeanHT[0].headPeakVel);
+		m_chartVel[chartIdx].Series(1).GetYValues().SetValue(0, m_analyzeHeadThrust[LR].m_structMeanHT[0].eyePeakVel);
+	}
+
+}
+
 void CDlgAnalyzeHeadThrust::deleteHT(int idxHT)
 {
+	
 	if(!idxHT)
 		return;
 
 	int leftIdx, rightIdx;
 
+	//양수라면 positive에서, 음수라면 negative에서 찾는다.
 	int chartIdx = (idxHT>0) ? 0 : 2;
+	
+	
 	double headVel, eyeVel;
 	//left eye에서 찾는다.
 	headVel = m_chartVel[chartIdx].Series(0).GetXValues().GetValue(abs(idxHT)-1);
