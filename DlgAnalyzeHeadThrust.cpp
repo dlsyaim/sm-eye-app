@@ -229,8 +229,8 @@ void CDlgAnalyzeHeadThrust::calEyeVelocity()
 		for(unsigned int i=M+1; i<m_ulEyeDataCount-M-1; i++)
 		{
 			// (2M/120) À¸·Î ³ª´²Áà¾ß ÇÑ´Ù.
-			m_pdVelLeft[i] = (m_pdLeft[i+M]-m_pdLeft[i-M])*60./M;
-			m_pdVelRight[i] = (m_pdRight[i+M]-m_pdRight[i-M])*60./M;
+			m_pdVelLeft[i+1] = (m_pdLeft[i+M]-m_pdLeft[i-M])*60./M;
+			m_pdVelRight[i+1] = (m_pdRight[i+M]-m_pdRight[i-M])*60./M;
 		}
 
 

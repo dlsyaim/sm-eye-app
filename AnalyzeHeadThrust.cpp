@@ -70,6 +70,7 @@ void CAnalyzeHeadThrust::deleteAllHTs()
 
 unsigned long inverseFindLowerThan(double* pDat, unsigned long startIdx, int count, double thres);
 unsigned long findPeak(double* pDat, unsigned long startIdx, int count, unsigned long lastIdx, int sign);
+unsigned long findSlopeEnd(double* pDat, unsigned long startIdx, unsigned long lastIdx, int sign);
 
 void CAnalyzeHeadThrust::analyze(double* pEyeVel, unsigned long eyeCount, double* pTarget, unsigned long targetCount)
 {
@@ -108,7 +109,30 @@ void CAnalyzeHeadThrust::analyze(double* pEyeVel, unsigned long eyeCount, double
 					pHT->headOnsetIdx = onsetIdx;
 					pHT->eyeOnsetIdx = (unsigned long)(onsetIdx*ratio + .5);
  
-					int M = 3;
+					/*
+
+					// slope의 끝을 찾아 onset과 slope끝의 중간에서 찾는 버젼
+					unsigned long idxEyeSlopeEnd = findSlopeEnd(m_pdEyeVel, pHT->eyeOnsetIdx, eyeCount, sign);
+					unsigned long idxHeadSlopeEnd = findSlopeEnd(m_pdHeadVel, pHT->eyeOnsetIdx, eyeCount, sign);
+					unsigned long idxSlopeEnd = min(idxEyeSlopeEnd, idxHeadSlopeEnd);
+
+					int len = idxSlopeEnd-pHT->headOnsetIdx; 
+					if(len > 8)
+					{
+						//가운데에서 측정
+						int M = int(len/4.+.5);
+						pHT->eyePeakIdx = pHT->headPeakIdx = int((pHT->headOnsetIdx+idxSlopeEnd)/2.+.5);
+						pHT->headPeakVel = getAcc(m_pdEyeVel, pHT->eyePeakIdx - M, 2*M);
+						pHT->eyePeakVel = getAcc(m_pdHeadVel, pHT->headPeakIdx-M, 2*M);
+					}*/
+
+
+					unsigned long idxHeadSlopeEnd = findSlopeEnd(m_pdHeadVel, pHT->headOnsetIdx, eyeCount, sign);
+					int len = idxHeadSlopeEnd-pHT->headOnsetIdx;
+
+					
+					//maximum acc를 찾는 버젼
+					int M = 5;
 					//가속도가 최대가 되는 지점을 찾는다.
 					// 100ms 이내에 M개의 velocity가 증가 함수 혹은 감소함수인 것 중 가장 큰 것을 찾는다.
 					// acc가 sign과 일치해야 한다.
@@ -118,9 +142,11 @@ void CAnalyzeHeadThrust::analyze(double* pEyeVel, unsigned long eyeCount, double
 								pTarget[onsetIdx+int(ACC_SAMPLERATE/10)] > 0 ? 1:-1);	//onset+50ms 위치의 sign으로 +,-를 찾는다.
 					pHT->eyePeakVel = pHT->eyePeakIdx ? getAcc(m_pdEyeVel, pHT->eyePeakIdx, M) : 0;
 					pHT->headPeakVel = pHT->headPeakIdx ? getAcc(m_pdHeadVel, pHT->headPeakIdx, M) : 0;
+					
+					
 
-							
 					/*
+					//head peak velocity를 찾는 버젼
 					pHT->headPeakIdx = findPeak(pTarget, pHT->headOnsetIdx, ACC_SAMPLERATE/4, targetCount, 
 											pTarget[onsetIdx+int(ACC_SAMPLERATE/20)] > 0 ? 1:-1);	//onset+50ms 위치의 sign으로 +,-를 찾는다.
 					pHT->headPeakVel = pTarget[pHT->headPeakIdx];
@@ -211,6 +237,33 @@ unsigned long findPeak(double* pDat, unsigned long startIdx, int count, unsigned
 	}
 
 	return peakIdx;
+}
+
+unsigned long findSlopeEnd(double* pDat, unsigned long startIdx, unsigned long lastIdx, int sign)
+{
+	double mul = (sign>0) ? 1:-1;
+
+	unsigned long endIdx = 0;
+
+	//증가함수의 끝을 찾는다.
+	if(sign > 0)
+	{
+		for(endIdx = startIdx; endIdx<lastIdx-1; endIdx++)
+		{
+			if(pDat[endIdx+1] - pDat[endIdx] <= 0)
+				break;
+		}
+	}
+	else
+	{
+		for(endIdx = startIdx; endIdx<lastIdx-1; endIdx++)
+		{
+			if(pDat[endIdx+1] - pDat[endIdx] >= 0)
+				break;
+		}
+	}
+	
+	return endIdx;
 }
 
 /*
@@ -538,8 +591,8 @@ unsigned long findPeakAcc(double* pVel, unsigned long startIdx, unsigned long en
 					maxIdx = i;
 				}
 			}
-			else
-                break;
+			//else
+              //  break;
 		}
 
 	}
