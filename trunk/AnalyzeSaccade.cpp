@@ -44,7 +44,7 @@ void CAnalyzeSaccade::analyze(double* pEye, double* pTarget, unsigned long count
 			structSaccade* pSac = new structSaccade;
 			pSac->targetLeap = pTarget[i]-pTarget[i-1];
 			pSac->startIdx = i-1;
-			if(getSaccadeParam(pEye, i, min(i+MS500, count-1), pSac))	//saccade이후 500ms까지만
+			if(getSaccadeParam(pEye, i, min(i+MS1000, count-1), pSac))	//saccade이후 500ms까지만
 			{
 				//saccade가 찾아졌으면 list에 추가한다.
 				this->m_listSaccade.AddTail(pSac);		
@@ -372,7 +372,7 @@ unsigned long CAnalyzeSaccade::addSaccade(unsigned long idx, double* pEye, doubl
 	structSaccade* pSaccade = new structSaccade;
 	pSaccade->targetLeap = pTarget[i]-pTarget[i-1];
 	pSaccade->startIdx = i-1;
-	if(getSaccadeParam(pEye, i, min(i+MS500, count-1), pSaccade))	//saccade이후 500ms까지만
+	if(getSaccadeParam(pEye, i, min(i+MS1000, count-1), pSaccade))	//saccade이후 500ms까지만
 		m_listSaccade.InsertBefore(pos2, pSaccade);
 	else
 	{

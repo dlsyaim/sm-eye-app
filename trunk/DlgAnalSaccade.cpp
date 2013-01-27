@@ -403,8 +403,8 @@ void CDlgAnalSaccade::layoutCtrls()
 	//button
 	corLocateWindow(GetDlgItem(IDC_BUTTON_AS_REFRESH), gap, 1-gap-button_h, button_w, button_h, rect);
 	corLocateWindow(GetDlgItem(IDC_BUTTON_SACCADE_PRINT), 2*gap + button_w, 1-gap-button_h, button_w, button_h, rect);
-	corLocateWindow(GetDlgItem(IDCANCEL),1-button_w*2-2*gap, 1-gap-button_h, button_w, button_h, rect);
-	corLocateWindow(GetDlgItem(IDOK),1-button_w-gap, 1-gap-button_h, button_w, button_h, rect);
+	corLocateWindow(GetDlgItem(IDOK),1-button_w*2-2*gap, 1-gap-button_h, button_w, button_h, rect);
+	corLocateWindow(GetDlgItem(IDCANCEL),1-button_w-gap, 1-gap-button_h, button_w, button_h, rect);
 
 
 

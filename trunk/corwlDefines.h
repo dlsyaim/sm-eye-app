@@ -1,4 +1,4 @@
-#define FOR_ASAN
+//#define FOR_ASAN
 
 
 #define DEL(x) { if(x) {delete []x; x = NULL;}}
@@ -21,6 +21,7 @@
 #define MS300 (int(double(300)/(double(1000)/FRAMERATE)))
 #define MS400 (int(double(400)/(double(1000)/FRAMERATE)))
 #define MS500 (int(double(500)/(double(1000)/FRAMERATE)))
+#define MS1000 FRAMERATE
 
 //display source
 #define DISPLAY_SOURCE_CAM 1

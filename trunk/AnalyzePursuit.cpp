@@ -55,26 +55,60 @@ void CAnalyzePursuit::analyze(double* pEye, double* pTarget, unsigned long count
 	::ZeroMemory(m_pdTargetVel, sizeof(double)*m_ulDataCount);
 
 	//Velocity를 구한다.
-	unsigned int M = 100;	//이전 1000/SAMPLERATE*M (ms) ~ 이후 1000/SAMPLERATE*M (ms) 의 속도를 구한다.
-	double t = 2.0*M/FRAMERATE;
-	for(unsigned long i=1; i<count-M; i++)
+	unsigned int diffM = FRAMERATE;	//이전 1000/SAMPLERATE*M (ms) ~ 이후 1000/SAMPLERATE*M (ms) 의 속도를 구한다.
+	double t = 2.0*diffM/FRAMERATE;
+	for(unsigned long i=1; i<count-diffM; i++)
 	{
-		if(i<M)
+		if(i<diffM)
 		{
-			m_pdEyeVel[i] = (pEye[i+M]-pEye[0])/(double(i+M)/FRAMERATE);
-			m_pdTargetVel[i] = (pTarget[i+M] - pTarget[0])/(double(i+M)/FRAMERATE);
+			m_pdEyeVel[i] = (pEye[i+diffM]-pEye[0])/(double(i+diffM)/FRAMERATE);
+			m_pdTargetVel[i] = (pTarget[i+diffM] - pTarget[0])/(double(i+diffM)/FRAMERATE);
 		}
 		else
 		{
-			m_pdEyeVel[i] = (pEye[i+M]-pEye[i-M])/t;
-			m_pdTargetVel[i] = (pTarget[i+M] - pTarget[i-M])/t;
+			m_pdEyeVel[i] = (pEye[i+diffM]-pEye[i-diffM])/t;
+			m_pdTargetVel[i] = (pTarget[i+diffM] - pTarget[i-diffM])/t;
 		}
 	}
+
+	/*unsigned int smoothM = 120;
+	unsigned int diffM = 40;
+	
+	//smoothing
+	double* pEyeS = new double[count];
+	double* pTargetS = new double[count];
+	memset(pEyeS, 0, sizeof(double)*count);
+	memset(pTargetS, 0, sizeof(double)*count);
+	for(int i=0; i<count-smoothM; i++)
+	{
+		for(int j= 0; j<smoothM; j++)
+		{
+			pEyeS[i] += pEye[i+j];
+			pTargetS[i] += pTarget[i+j];
+		}
+		pEyeS[i] /= smoothM;
+		pTargetS[i] /= smoothM;
+	}
+
+	//get velocity
+	double t = double(diffM)/FRAMERATE;
+	for(unsigned long i=0; i<count-diffM; i++)
+	{
+		
+			m_pdEyeVel[i] = (pEyeS[i+diffM]-pEyeS[i])/t;
+			m_pdTargetVel[i] = (pTargetS[i+diffM] - pTargetS[i])/t;
+		
+	}
+	delete []pEyeS;
+	delete []pTargetS;
+
+	*/
+
 
 	
 
 	//처음부터 0이 아닌곳까지 찾는다.
-	unsigned long startIdx = M;
+	unsigned long startIdx = diffM;
 	while(m_pdTargetVel[startIdx++]==0);
 
 	//분석 구간을 찾는다.

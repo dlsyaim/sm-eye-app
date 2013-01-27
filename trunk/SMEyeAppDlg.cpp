@@ -1099,8 +1099,7 @@ void CSMEyeAppDlg::activateTestCtrls(bool bActive)
 	GetDlgItem(IDC_BUTTON_ANALYZE)->EnableWindow(bActive);
 	GetDlgItem(IDOK)->EnableWindow(bActive);
 
-	//tree
-	GetDlgItem(IDC_TREE_TEST)->EnableWindow(bActive);
+	
 
 	//series check
 	for(int i=0; i<7; i++)
@@ -1108,6 +1107,9 @@ void CSMEyeAppDlg::activateTestCtrls(bool bActive)
 
 	//offset remove check
 	GetDlgItem(IDC_CHECK_REMOVE_OFFSET)->EnableWindow(bActive);
+
+	//tree
+	GetDlgItem(IDC_TREE_TEST)->EnableWindow(bActive);
 }
 
 
@@ -1464,7 +1466,7 @@ void CSMEyeAppDlg::OnBnClickedCheckCamStart()
 					#endif
 				
 					//tree disable
-					GetDlgItem(IDC_TREE_TEST)->EnableWindow(false);
+					//GetDlgItem(IDC_TREE_TEST)->EnableWindow(false);
 					GetDlgItem(IDC_CHECK_CAM_START)->SetWindowText("Stop");
 
 					m_stereoCam.setUnderTest(true);
@@ -1547,7 +1549,7 @@ void CSMEyeAppDlg::OnBnClickedCheckCamStart()
 		{
 			playAvi(true);	//영상 play를 toggle시킨다.
 			m_timeStart = CTime::GetCurrentTime();
-			GetDlgItem(IDC_TREE_TEST)->EnableWindow(false);
+			//GetDlgItem(IDC_TREE_TEST)->EnableWindow(false);
 			GetDlgItem(IDC_CHECK_CAM_START)->SetWindowText("Stop");
 		}
 
@@ -1560,8 +1562,6 @@ void CSMEyeAppDlg::OnBnClickedCheckCamStart()
 	}
 	else		//stop
 	{
-		activateTestCtrls(true);
-
 		if(this->m_displaySource == DISPLAY_SOURCE_CAM)
 		{
 			m_stereoCam.setTriggerMode(true);
@@ -1677,7 +1677,7 @@ void CSMEyeAppDlg::OnBnClickedCheckCamStart()
 
 			
 			//tree enable
-			GetDlgItem(IDC_TREE_TEST)->EnableWindow(true);
+			//GetDlgItem(IDC_TREE_TEST)->EnableWindow(true);
 			GetDlgItem(IDC_CHECK_CAM_START)->SetWindowText("Start");
 
 			//check 버튼을 enable시킨다.
@@ -1716,10 +1716,12 @@ void CSMEyeAppDlg::OnBnClickedCheckCamStart()
 		{
 			playAvi(false);
 			this->m_aviLoaderManager.setPos(0);
-			GetDlgItem(IDC_TREE_TEST)->EnableWindow(true);
+			//GetDlgItem(IDC_TREE_TEST)->EnableWindow(true);
 
 			GetDlgItem(IDC_CHECK_CAM_START)->SetWindowText("Start");
 		}
+
+		activateTestCtrls(true);
 	}
 }
 
