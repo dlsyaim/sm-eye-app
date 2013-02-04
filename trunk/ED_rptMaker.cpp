@@ -776,15 +776,15 @@ void ED_rptMaker::addBlockNystagmusTest(CTreeCtrlXML* pTree, bool bChart)
 
 					fname.Replace(".emd", "");
 					CString values[8];
-					values[0].Format("%.1f", nystag[LEFT].LeftUpVel);
-					values[1].Format("%.1f", nystag[LEFT].RightDownVel);
-					values[2].Format("%.1f", 0);
-					values[3].Format("%.1f", 0);
-					values[4].Format("%.1f", nystag[RIGHT].LeftUpVel);
-					values[5].Format("%.1f", nystag[RIGHT].RightDownVel);
-					values[6].Format("%.1f", 0);
-					values[7].Format("%.1f", 0);
-					this->addTable(fname, values, 8, "0");			
+					nystag[LEFT].LeftUpVel ? values[0].Format("%.1f", nystag[LEFT].LeftUpVel) : values[0] = "";
+					nystag[LEFT].RightDownVel ? values[1].Format("%.1f", nystag[LEFT].RightDownVel) : values[1] = "";
+					//values[2].Format("%.1f", 0);
+					//values[3].Format("%.1f", 0);
+					nystag[RIGHT].LeftUpVel ? values[4].Format("%.1f", nystag[RIGHT].LeftUpVel) : values[4] = "";
+					nystag[RIGHT].RightDownVel ? values[5].Format("%.1f", nystag[RIGHT].RightDownVel) : values[5] = "";
+					//values[6].Format("%.1f", 0);
+					//values[7].Format("%.1f", 0);
+					this->addTable(fname, values, 8, "0");
 				}
 				else
 					addChart(pTest, 30);	//nystagmus의 경우  bottom axis를 30으로 

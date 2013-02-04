@@ -53,13 +53,12 @@ void CCaloricData::calcPeakRegion(int test, double spon)
 					if((sec>m_peakRegion[0]) && (sec<m_peakRegion[1]))
 					{
 						//방향이 맞는 것만 계산한다.
-						if(ydir*(pNys->vel + spon) > 0)
+						//if(ydir*(pNys->vel + spon) > 0)
 						{
 							maxVel += pNys->vel;
 							maxVelCount++;
 						}
-						else
-							int l = 0;
+						
 					}
 
 				}
@@ -103,25 +102,31 @@ void CCaloricData::calcPeakRegion(int test, double spon)
 						if((sec+j>=0) && (sec+j < bufLen))
 						{
 							//방향이 맞는 것만 계산한다.
-							if(ydir*(pNys->vel + spon) > 0)
+							//if(ydir*(pNys->vel + spon) > 0)
 							{
 								pBuf[sec+j] += pNys->vel;
 								pBufCount[sec+j]++;
 							}
-							else
-								int k = 0;
 						}
 					}
 				}
 			}
 
 			//평균 속도를 구한다.
+			//데이터가 없는 부분은 가장 낮은 값으로 세팅해 준다.
+			double baseVel = 0;
+			if(test<=RC)
+				baseVel = -1000;
+			else
+				baseVel = 1000;
 			for(int i=0; i<bufLen; i++)
 			{
-				if(pBufCount[i] && (pBufCount[i] > width*2*0.4))		//10초라면 4개 이상이 있어야 한다.
+				if(pBufCount[i] && (pBufCount[i] > width*2*0.3))		//10초라면 3개 이상이 있어야 한다.
 					pBuf[i] /= pBufCount[i];
 				else
-					pBuf[i] = 0;
+				{
+					pBuf[i] = baseVel;
+				}
 			}
 
 			//최대값을 구한다. test가 2(LC), 3(RW)일 경우 최소값을 찾는다.
@@ -129,6 +134,7 @@ void CCaloricData::calcPeakRegion(int test, double spon)
 			int maxIdx = 0;
 			if(test<=RC)
 			{
+				maxVel = -1000;
 				for(int i=0; i<bufLen; i++)
 				{
 					if(maxVel < pBuf[i])
@@ -140,6 +146,7 @@ void CCaloricData::calcPeakRegion(int test, double spon)
 			}
 			else
 			{
+				maxVel = 1000;
 				for(int i=0; i<bufLen; i++)
 				{
 					if(maxVel > pBuf[i])
