@@ -676,7 +676,7 @@ void CDlgAnalyzeCaloric::drawNystagmus(double spon)
 			y = pNys->vel + spon;
 
 			//방향이 맞는 것만 그린다.
-			if(ydir*(pNys->vel+spon) > 0)
+			//if(ydir*(pNys->vel+spon) > 0)
 				this->m_chartCaloric.Series(i).AddXY(x, pNys->vel + spon, "", color);
 
 			if(maxX < fabs(x))

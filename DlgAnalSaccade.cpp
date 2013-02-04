@@ -1392,11 +1392,14 @@ bool CDlgAnalSaccade::exportToCSV(CString fname, CList<structSaccade*, structSac
 		int count = pList->GetCount();
 		POSITION pos = pList->GetHeadPosition();;
 		structSaccade* pStruct;
+
+
 		for(int i=0; i<count; i++)
 		{
 			pStruct = pList->GetNext(pos);
 			if(pStruct)
 			{
+				
 				str.Format("%d, %f,  %f,  %f,  %f,  %f,  %f  \n",
 					i,
 					double(pStruct->targetLeap),
