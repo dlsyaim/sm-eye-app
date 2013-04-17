@@ -192,11 +192,13 @@ void CCaloricData::calcFixationIndex(int test, double spon)
 			double sec;
 			double fixVel, unfixVel;
 			int fixCount, unfixCount;
+			double maxFixVel, maxUnfixVel;
+			maxFixVel = maxUnfixVel = 0;
 			fixVel = unfixVel = fixCount = unfixCount = 0;
 			for(int i=0; i<count; i++)
 			{
 				structNystag* pNys = m_analyzeNys.m_listNystagmus.GetNext(pos);
-				if((pNys) && (ydir*(pNys->vel+spon) > 0))
+				/*if((pNys) && (ydir*(pNys->vel+spon) > 0))
 				{
 					
 					sec = (pNys->startI + pNys->endI)/2./FRAMERATE;
@@ -213,18 +215,40 @@ void CCaloricData::calcFixationIndex(int test, double spon)
 						unfixCount++;
 					}
 				}
+				if(fixCount && unfixCount)
+				{
+					fixVel /= fixCount;
+					unfixVel /= unfixCount;
+
+					m_fixationIdx = fixVel/unfixVel;
+
+				}
+				else
+					m_fixationIdx = 0;*/
+				//시고정 지수 = (시고정에서 측정한 최대 SCEV)/(시고정없이 측정한 최대 SCEV) x 100(%)
+				if((pNys) && (ydir*(pNys->vel+spon) > 0) )
+				{
+					sec = (pNys->startI + pNys->endI)/2./FRAMERATE;
+					if((sec>= m_fixationBlock[0]) && ( sec<= m_fixationBlock[1]))
+					{
+						//fixation 구간에 있다면
+						if(abs(pNys->vel+spon) > abs(maxFixVel))
+							maxFixVel = pNys->vel+spon;
+					}
+					else
+					{
+						//unfixation 구간이라면
+						if(abs(pNys->vel+spon) > abs(maxUnfixVel))
+							maxUnfixVel = pNys->vel+spon;
+					}
+				}
+				if(maxFixVel && maxUnfixVel)
+					m_fixationIdx = maxFixVel/maxUnfixVel;
+				else
+					m_fixationIdx = 0;
 			}
 			
-			if(fixCount && unfixCount)
-			{
-				fixVel /= fixCount;
-				unfixVel /= unfixCount;
-
-				m_fixationIdx = fixVel/unfixVel;
-
-			}
-			else
-				m_fixationIdx = 0;
+			
 
 		}
 		else
@@ -444,7 +468,8 @@ void CAnalyzeCaloric::analyze()
 	// Directional preponderance  
 	// ((RC+LW)-(RW+LC)) / ((RC+LW)+(RW+LC)) * 100 (%)
 	if((rc+lw)+(rw+lc))
-		this->m_caloricDirectionalpreponderance = ((rc+lw)-(rw+lc)) / ((rc+lw)+(rw+lc));
+		//this->m_caloricDirectionalpreponderance = ((rc+lw)-(rw+lc)) / ((rc+lw)+(rw+lc));
+		this->m_caloricDirectionalpreponderance = ((rw+lc)-(lw+rc)) / ((rc+lw)+(rw+lc));
 	else
         m_caloricDirectionalpreponderance = 0;
 
